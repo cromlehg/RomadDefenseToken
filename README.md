@@ -1,6 +1,6 @@
 ![RobustCoin](logo.png "RobustCoin")
 
-# Inspem smart contract
+# Robust Coin smart contract
 
 * _Standart_        : ERC20
 * _Name_            : RobustCoin
