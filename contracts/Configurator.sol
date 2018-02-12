@@ -18,13 +18,12 @@ contract Configurator is Ownable {
   DoubleStageFreezeTokensWallet public bountyWallet;
 
   function deploy() public onlyOwner {
-    //owner = 0x95EA6A4ec9F80436854702e5F05d238f27166A03;
 
     token = new RobustCoin();
 
     presale = new Presale();
 
-    presale.setWallet(0x95EA6A4ec9F80436854702e5F05d238f27166A03);
+    presale.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
     presale.setStart(1518393600);
     presale.setPeriod(7);
     presale.setPrice(6667000000000000000000);
@@ -50,8 +49,8 @@ contract Configurator is Ownable {
     mainsale.setMinInvestedLimit(10000000000000000);
     mainsale.setToken(token);
     mainsale.setPrice(5000000000000000000000);
-    mainsale.setWallet(0x95EA6A4ec9F80436854702e5F05d238f27166A03);
-    mainsale.setFoundersTokensWallet(0x95EA6A4ec9F80436854702e5F05d238f27166A04);
+    mainsale.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
+    mainsale.setFoundersTokensWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
     mainsale.setStart(1520640000);
     mainsale.setHardcap(47500000000000000000000);
     mainsale.setFoundersTokensPercent(10);
@@ -59,7 +58,7 @@ contract Configurator is Ownable {
 
     bountyWallet = new DoubleStageFreezeTokensWallet();
     bountyWallet.setMasterPercent(30);
-    bountyWallet.setWallet(0x95EA6A4ec9F80436854702e5F05d238f27166A04);
+    bountyWallet.setWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     bountyWallet.setToken(token);
     bountyWallet.setFirstDate(1543622400);
     bountyWallet.setSecondDate(1567296000);
@@ -69,10 +68,12 @@ contract Configurator is Ownable {
 
     presale.setNextSaleAgent(mainsale);
 
-    bountyWallet.transferOwnership(owner);
-    token.transferOwnership(owner);
-    presale.transferOwnership(owner);
-    mainsale.transferOwnership(owner);
+    address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
+
+    bountyWallet.transferOwnership(manager);
+    token.transferOwnership(manager);
+    presale.transferOwnership(manager);
+    mainsale.transferOwnership(manager);
   }
 
 }

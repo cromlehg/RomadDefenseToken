@@ -52,9 +52,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Bounty tokens percent_       : 5% 
 * _Founders tokens percent_     : 15% 
 * _For sale tokens percent_     : 85% 
-* _Founders tokens wallet_      :  
-* _Bounty tokens wallet_        : 
-* _Contract owner_              : 
+* _Founders tokens wallet_      : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
+* _Bounty tokens wallet_        : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
+* _Contract owner_              : 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766
 
 ### Links
 1. _Token_ -
@@ -77,13 +77,13 @@ Tokens can manually mint at any time untill ICO finished.
 * _Hardcap_                    : 11 250 ETH
 * _Period_                     : 7 days
 * _Start_                      : 
-* _Wallet_                     : 
+* _Wallet_                     : 0xa86780383E35De330918D8e4195D671140A60A74
 
 #### ICO
 * _Price_                      : 1 ETH = 5000 Tokens
 * _Hardcap_                    : 47 500 ETH
 * _Start_                      : 
-* _Wallet_                     : 
+* _Wallet_                     : 0x98882D176234AEb736bbBDB173a8D24794A3b085
 
 _Milestones_
 1. 6 days                      : bonus +10% 
