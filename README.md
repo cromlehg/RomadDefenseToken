@@ -50,7 +50,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 * _Minimal insvested limit_     : 0.1 ETH
 * _Bounty tokens percent_       : 5% 
-* _Founders tokens percent_     : 15% 
+* _Founders tokens percent_     : 10% 
 * _For sale tokens percent_     : 85% 
 * _Founders tokens wallet_      : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
 * _Bounty tokens wallet_        : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
@@ -88,8 +88,7 @@ Tokens can manually mint at any time untill ICO finished.
 _Milestones_
 1. 6 days                      : bonus +10% 
 2. 6 days                      : bonus +9% 
-3. 6 days                      : bonus +8% 
-3. 6 days                      : bonus +8% 
+3. 6 days                      : bonus +8%
 3. 6 days                      : bonus +7% 
 3. 6 days                      : bonus +6% 
 3. 6 days                      : bonus +5% 
