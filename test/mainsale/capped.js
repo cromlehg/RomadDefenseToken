@@ -24,7 +24,7 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 60;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(6667);
+    this.price = tokens(5000);
     this.hardcap = ether(47500);
     this.minInvestedLimit = ether(0.1);
 
