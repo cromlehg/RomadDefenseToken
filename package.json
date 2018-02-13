@@ -29,7 +29,8 @@
     "flatten-token": "./node_modules/.bin/truffle-flattener ./contracts/RobustCoin.sol > ./deploy/Token.sol",
     "flatten-presale": "./node_modules/.bin/truffle-flattener ./contracts/Presale.sol > ./deploy/Presale.sol",
     "flatten-mainsale": "./node_modules/.bin/truffle-flattener ./contracts/Mainsale.sol > ./deploy/Mainsale.sol",
-    "flatten-test": "npm run flatten-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale"
+    "flatten-wallet": "./node_modules/.bin/truffle-flattener ./contracts/DoubleStageFreezeTokensWallet.sol > ./deploy/Wallet.sol",
+    "flatten-test": "npm run flatten-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale && npm run flatten-wallet"
   },
   "repository": {
     "type": "git",
