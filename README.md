@@ -68,21 +68,21 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 Tokens can manually mint at any time untill ICO finished.
 
 #### Bounty freeze wallet
-* 30% tokens unlocked after Sat, 01 Dec 2018 00:00:00 GMT
-* 70% tokens unlocked after Sun, 01 Sep 2019 00:00:00 GMT
+* 30% tokens unlocked after 01 Dec 2018 00:00:00 GMT
+* 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
 
 #### Presale
 * _Price_                      : 1 ETH = 6667 Tokens
 * _Softcap_                    : 1000 ETH
 * _Hardcap_                    : 11 250 ETH
 * _Period_                     : 7 days
-* _Start_                      : 
+* _Start_                      : 12 Feb 2018 00:00:00 GMT
 * _Wallet_                     : 0xa86780383E35De330918D8e4195D671140A60A74
 
 #### ICO
 * _Price_                      : 1 ETH = 5000 Tokens
 * _Hardcap_                    : 47 500 ETH
-* _Start_                      : 
+* _Start_                      : 10 Mar 2018 00:00:00 GMT
 * _Wallet_                     : 0x98882D176234AEb736bbBDB173a8D24794A3b085
 
 _Milestones_
