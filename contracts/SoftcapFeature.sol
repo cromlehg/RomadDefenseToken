@@ -8,7 +8,7 @@ contract SoftcapFeature is InvestedProvider, WalletProvider {
 
   using SafeMath for uint;
 
-  mapping(address => uint) balances;
+  mapping(address => uint) public balances;
 
   bool public softcapAchieved;
 
