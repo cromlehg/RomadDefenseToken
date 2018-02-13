@@ -28,7 +28,7 @@ contract Configurator is Ownable {
     presale.setPeriod(7);
     presale.setPrice(6667000000000000000000);
     presale.setSoftcap(1000000000000000000000);
-    presale.setMinInvestedLimit(10000000000000000);
+    presale.setMinInvestedLimit(100000000000000000);
     presale.setToken(token);
     presale.setHardcap(11250000000000000000000);
     token.setSaleAgent(presale);
@@ -46,7 +46,7 @@ contract Configurator is Ownable {
     mainsale.addMilestone(6, 2);
     mainsale.addMilestone(3, 1);
     mainsale.addMilestone(3, 0);
-    mainsale.setMinInvestedLimit(10000000000000000);
+    mainsale.setMinInvestedLimit(100000000000000000);
     mainsale.setToken(token);
     mainsale.setPrice(5000000000000000000000);
     mainsale.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
