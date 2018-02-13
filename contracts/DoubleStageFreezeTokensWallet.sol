@@ -44,7 +44,7 @@ contract DoubleStageFreezeTokensWallet is PercentRateProvider, WalletProvider {
     activated = true;
   }
 
-  function widthdraw() public {
+  function withdraw() public {
     require(activated);
     if(now > firstDate) token.transfer(wallet, token.balanceOf(this).mul(masterPercent).div(percentRate));
     if(now > secondDate) token.transfer(wallet, token.balanceOf(this));
