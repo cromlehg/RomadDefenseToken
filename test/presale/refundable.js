@@ -60,6 +60,8 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.sendTransaction({value: investment, from: wallets[3]});
     await increaseTimeTo(this.afterEnd);
     await crowdsale.finish({from: wallets[1]});
+    const balance = await crowdsale.balances(wallets[3]);
+    balance.should.be.bignumber.equal(investment);
     const pre = web3.eth.getBalance(wallets[3]);
     await crowdsale.refund({from: wallets[3], gasPrice: 0}).should.be.fulfilled;
     const post = web3.eth.getBalance(wallets[3]);
