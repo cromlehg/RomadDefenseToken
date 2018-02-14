@@ -10,8 +10,6 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider {
 
   using SafeMath for uint;
 
-  address public wallet;
-
   address public directMintAgent;
 
   uint public price;
@@ -53,10 +51,6 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider {
 
   function setDirectMintAgent(address newDirectMintAgent) public onlyOwner {
     directMintAgent = newDirectMintAgent;
-  }
-
-  function setWallet(address newWallet) public onlyOwner {
-    wallet = newWallet;
   }
 
   function setPrice(uint newPrice) public onlyOwner {
