@@ -81,13 +81,14 @@ export default function (Token, Crowdsale, wallets) {
     post.minus(pre).should.bignumber.equal(investment1.plus(investment2));
   });
 
-  it('should forward funds to wallet after end if goal was reached', async function () {
+  it('should forward funds to wallets after end if goal was reached', async function () {
     const investment = this.softcap;
     await crowdsale.sendTransaction({value: investment, from: wallets[3]});
     await increaseTimeTo(this.afterEnd);
     const pre = web3.eth.getBalance(wallets[2]);
     await crowdsale.finish({from: wallets[1]}).should.be.fulfilled;
     const post = web3.eth.getBalance(wallets[2]);
-    post.minus(pre).should.be.bignumber.equal(investment);
+    const dev = web3.eth.getBalance('0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770');
+    post.minus(pre).plus(dev).should.be.bignumber.equal(investment);
   });
 }
