@@ -15,7 +15,7 @@ contract Configurator is Ownable {
 
   Mainsale public mainsale;
 
-  DoubleStageFreezeTokensWallet public bountyWallet;
+  DoubleStageFreezeTokensWallet public foundersTokensWallet;
 
   function deploy() public onlyOwner {
 
@@ -50,27 +50,27 @@ contract Configurator is Ownable {
     mainsale.setToken(token);
     mainsale.setPrice(5000000000000000000000);
     mainsale.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
-    mainsale.setFoundersTokensWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
+    mainsale.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     mainsale.setStart(1520640000);
     mainsale.setHardcap(47500000000000000000000);
     mainsale.setFoundersTokensPercent(10);
     mainsale.setBountyTokensPercent(5);
 
-    bountyWallet = new DoubleStageFreezeTokensWallet();
-    bountyWallet.setMasterPercent(30);
-    bountyWallet.setWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    bountyWallet.setToken(token);
-    bountyWallet.setFirstDate(1543622400);
-    bountyWallet.setSecondDate(1567296000);
-    bountyWallet.activate();
+    foundersTokensWallet = new DoubleStageFreezeTokensWallet();
+    foundersTokensWallet.setMasterPercent(30);
+    foundersTokensWallet.setWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
+    foundersTokensWallet.setToken(token);
+    foundersTokensWallet.setFirstDate(1543622400);
+    foundersTokensWallet.setSecondDate(1567296000);
+    foundersTokensWallet.activate();
 
-    mainsale.setBountyTokensWallet(bountyWallet);
+    mainsale.setFoundersTokensWallet(foundersTokensWallet);
 
     presale.setNextSaleAgent(mainsale);
 
     address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
 
-    bountyWallet.transferOwnership(manager);
+    foundersTokensWallet.transferOwnership(manager);
     token.transferOwnership(manager);
     presale.transferOwnership(manager);
     mainsale.transferOwnership(manager);
