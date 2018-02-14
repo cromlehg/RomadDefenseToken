@@ -27,6 +27,7 @@ contract Presale is NextSaleAgentFeature, SoftcapFeature, RobustCoinCommonSale {
     if (updateRefundState()) {
       token.finishMinting();
     } else {
+      withdraw();
       token.setSaleAgent(nextSaleAgent);
     }
   }
