@@ -31,7 +31,7 @@ To start working with contract you should follow next steps:
 3. Call 'deploy' function on addres from (3). Gas 4000000 (actually 3979551). 
 
 Contract manager must call finishMinting after each crowdsale milestone!
-To support external mint service manager should specify address by calling _setDirectMintAgent_. After that specified address can direct mint RIC tokens by calling _directMint_.
+To support external mint service manager should specify address by calling _setDirectMintAgent_. After that specified address can direct mint RIC tokens by calling _mintTokensByETHExternal_ and _mintTokensExternal_.
 
 ### How to invest
 To purchase tokens investor should send ETH (more than minimum 0.1 ETH) to corresponding crowdsale contract.
