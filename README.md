@@ -150,7 +150,15 @@ https://ropsten.etherscan.io/tx/0xed4bc1bdbdaa8afa575a944e5c9c80f925d353fb03aa2b
 * _Founders tokens percent_     : 10% 
 * _For sale tokens percent_     : 85% 
 * _Founders tokens wallet_      : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
-* _Bounty tokens wallet_        : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
+* _Bounty tokens wallet_        : 0x8fd94be56237ea9d854b23b78615775121dd1e82
+
+_Bounty freeze wallet_
+
+* 30% tokens unlocked after 12 Feb 2018 00:00:00 GMT
+* 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
+
+_Developer wallet_              : 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
+_Developer limit_               : 0.045 ETH
 
 _Milestones_
 
@@ -185,7 +193,7 @@ https://ropsten.etherscan.io/tx/0xb35ddad79657852a1cdf027f938ea7b1085b1389d18aa2
 * setWallet, gas = 28880
 https://ropsten.etherscan.io/tx/0xc211a8b8881c2498690b4972930bbf599a9652bc0429ef4fc85d07e63b202907
 
-* withdraw form BountyWallet, gas = 42637
+* withdraw from bounty wallet, gas = 42637
 https://ropsten.etherscan.io/tx/0x15079de0013cf36855f7d1e0180c48adf000eb4114501443c09d34e03e6bb1f9
 
 ##### Token holders
