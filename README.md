@@ -118,6 +118,9 @@ _Milestones_
 * _Period_                      : 7 days
 * _Wallet_                      : 0x8fd94be56237ea9d854b23b78615775121dd1e82
 
+* _Developer wallet_            : 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
+* _Developer limit_             : 0.045 ETH
+
 ##### Purchasers
 
 * 3.3 ETH => 22001.1 tokens, gas = 148207
@@ -156,9 +159,6 @@ _Bounty freeze wallet_
 
 * 30% tokens unlocked after 12 Feb 2018 00:00:00 GMT
 * 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
-
-_Developer wallet_              : 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
-_Developer limit_               : 0.045 ETH
 
 _Milestones_
 
