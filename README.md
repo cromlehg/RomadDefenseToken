@@ -11,6 +11,15 @@
 * _Fiat dependency_ : No
 * _Tokens locked_   : Yes
 
+## Summary percentage distribution of tokens by all stages
+
+* _Founders_ - 10%
+* _Early investors_ - 15%
+* _Bounty_ - 5%
+* _Presale_ - 5%
+* _PreICO_ - 15%
+* _ICO_ - 50%
+
 ## Smart-contracts description
 
 Contract mint bounty and founders tokens after main sale stage finished. 
@@ -95,8 +104,8 @@ _Milestones_
 7. 6 days                       : bonus +4% 
 8. 6 days                       : bonus +3% 
 9. 6 days                       : bonus +2% 
-10. 3 days                       : bonus +1% 
-11. 3 days                       : without bonus
+10. 3 days                      : bonus +1% 
+11. 3 days                      : without bonus
 
 ## Ropsten network configuration 
 
