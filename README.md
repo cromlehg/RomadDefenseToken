@@ -117,7 +117,6 @@ _Milestones_
 * _Hardcap_                     : 11 250 ETH
 * _Period_                      : 7 days
 * _Wallet_                      : 0x8fd94be56237ea9d854b23b78615775121dd1e82
-
 * _Developer wallet_            : 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
 * _Developer limit_             : 0.045 ETH
 
