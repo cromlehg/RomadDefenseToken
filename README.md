@@ -31,7 +31,7 @@ Also crowdsale contracts have special function to direct mint tokens in wei valu
 2. _Presale_ - Presale contract
 3. _Mainsale_ - ICO contract
 4. _Configurator_ - contract with main configuration for production
-4. _BountyWallet_ - wallet for freeze bounty tokens
+4. _FoundersWallet_ - wallet for freeze bounty tokens
 
 ### How to manage contract
 To start working with contract you should follow next steps:
@@ -69,14 +69,14 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 1. _Token_ -
 2. _Presale_ -
 3. _Mainsale_ -
-3. _BountyWallet_ -
+3. _FoundersWallet_ -
 
 ### Crowdsale stages
 
 #### Features
 Tokens can manually mint at any time untill ICO finished.
 
-#### Bounty freeze wallet
+#### Founders freeze wallet
 * 30% tokens unlocked after 01 Dec 2018 00:00:00 GMT
 * 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
 
