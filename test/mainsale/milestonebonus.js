@@ -32,7 +32,7 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   beforeEach(async function () {
-    this.start = latestTime();	
+    this.start = latestTime();
     this.duration = 60;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
@@ -59,8 +59,8 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.addMilestone(6, 2);
     await crowdsale.addMilestone(3, 1);
     await crowdsale.addMilestone(3, 0);
-    await crowdsale.setFoundersTokensWallet(wallets[3]);
-    await crowdsale.setFoundersTokensPercent(10);
+    await crowdsale.setTeamTokensWallet(wallets[3]);
+    await crowdsale.setTeamTokensPercent(10);
     await crowdsale.setBountyTokensWallet(wallets[4]);
     await crowdsale.setBountyTokensPercent(5);
     await crowdsale.transferOwnership(wallets[1]);

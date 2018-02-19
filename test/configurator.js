@@ -11,17 +11,17 @@ const should = require('chai')
   .should();
 
 const Configurator = artifacts.require('Configurator.sol');
-const Token = artifacts.require('RobustCoin.sol');
-const Presale = artifacts.require('Presale.sol');
-const Mainsale = artifacts.require('Mainsale.sol');
-const FoundersTokensWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
+const Token = artifacts.require('SafetyToken.sol');
+const Presale = artifacts.require('PreICO.sol');
+const Mainsale = artifacts.require('ICO.sol');
+const TeamTokensWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
 
 contract('Configurator integration test', function (accounts) {
   let configurator;
   let token;
   let presale;
   let mainsale;
-  let foundersTokensWallet;
+  let teamTokensWallet;
 
   const manager = '0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766';
 
@@ -32,14 +32,14 @@ contract('Configurator integration test', function (accounts) {
     await configurator.deploy();
 
     const tokenAddress = await configurator.token();
-    const presaleAddress = await configurator.presale();
-    const mainsaleAddress = await configurator.mainsale();
-    const foundersTokensWalletAddress = await configurator.foundersTokensWallet();
+    const presaleAddress = await configurator.preICO();
+    const mainsaleAddress = await configurator.ico();
+    const teamTokensWalletAddress = await configurator.teamTokensWallet();
 
     token = await Token.at(tokenAddress);
     presale = await Presale.at(presaleAddress);
     mainsale = await Mainsale.at(mainsaleAddress);
-    foundersTokensWallet = await FoundersTokensWallet.at(foundersTokensWalletAddress);
+    teamTokensWallet = await TeamTokensWallet.at(teamTokensWalletAddress);
   });
 
 
@@ -59,8 +59,8 @@ contract('Configurator integration test', function (accounts) {
   });
 
   it('contracts should have bounty wallet address', async function () {
-    const foundersTokensWalletOwner = await foundersTokensWallet.owner();
-    foundersTokensWalletOwner.should.bignumber.equal(manager);
+    const teamTokensWalletOwner = await teamTokensWallet.owner();
+    teamTokensWalletOwner.should.bignumber.equal(manager);
   });
 
   it('presale and mainsale should have start time as described in README', async function () {
@@ -76,9 +76,9 @@ contract('Configurator integration test', function (accounts) {
   });
 
   it('bounty frizze wallet should have firstDate and secondDate time as described in README', async function () {
-    const firstDate = await foundersTokensWallet.firstDate();
+    const firstDate = await teamTokensWallet.firstDate();
     firstDate.should.bignumber.equal((new Date('01 Dec 2018 00:00:00 GMT')).getTime() / 1000);
-    const secondDate = await foundersTokensWallet.secondDate();
+    const secondDate = await teamTokensWallet.secondDate();
     secondDate.should.bignumber.equal((new Date('01 Sep 2019 00:00:00 GMT')).getTime() / 1000);
   });
 
@@ -109,7 +109,7 @@ contract('Configurator integration test', function (accounts) {
   });
 
   it ('founders wallet should have master percent as described in README', async function () {
-    const masterPercent = await foundersTokensWallet.masterPercent();
+    const masterPercent = await teamTokensWallet.masterPercent();
     masterPercent.should.bignumber.equal(30);
   });
 
@@ -121,7 +121,7 @@ contract('Configurator integration test', function (accounts) {
   });
 
   it ('Bounty wallet and founders wallet should be as described in README', async function () {
-    const foundersWallet = await foundersTokensWallet.wallet();
+    const foundersWallet = await teamTokensWallet.wallet();
     foundersWallet.should.bignumber.equal('0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5');
     const bountyWallet = await mainsale.bountyTokensWallet();
     bountyWallet.should.bignumber.equal('0x28732f6dc12606D529a020b9ac04C9d6f881D3c5');

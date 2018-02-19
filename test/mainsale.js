@@ -4,8 +4,8 @@ import milestonebonus from './mainsale/milestonebonus';
 import bounty from './mainsale/bounty';
 import additional from './mainsale/additional';
 
-const token = artifacts.require('RobustCoin.sol');
-const crowdsale = artifacts.require('Mainsale.sol');
+const token = artifacts.require('SafetyToken.sol');
+const crowdsale = artifacts.require('ICO.sol');
 
 contract('Mainsale - common test', function (accounts) {
   common(token, crowdsale, accounts);

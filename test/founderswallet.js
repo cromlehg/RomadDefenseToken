@@ -1,7 +1,7 @@
 import additional from './founderswallet/additional';
 import ownable from './founderswallet/ownable';
 
-const token = artifacts.require('RobustCoin.sol');
+const token = artifacts.require('SafetyToken.sol');
 const foundersWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
 
 contract('Bounty Wallet is ownable', function (accounts) {

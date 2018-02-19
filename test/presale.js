@@ -3,8 +3,8 @@ import capped from './presale/capped';
 import refundable from './presale/refundable';
 import additional from './presale/additional';
 
-const token = artifacts.require('RobustCoin.sol');
-const crowdsale = artifacts.require('Presale.sol');
+const token = artifacts.require('SafetyToken.sol');
+const crowdsale = artifacts.require('PreICO.sol');
 
 contract('Presale - common crowdsale test', function (accounts) {
   common(token, crowdsale, accounts);

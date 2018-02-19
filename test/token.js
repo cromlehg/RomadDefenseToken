@@ -4,7 +4,7 @@ import mintable from './token/mintable';
 import ownable from './token/ownable';
 import standard from './token/standard';
 
-const token = artifacts.require('RobustCoin.sol');
+const token = artifacts.require('SafetyToken.sol');
 
 contract('Basic Token', function (accounts) {
   describe('Basic Token', function () {
