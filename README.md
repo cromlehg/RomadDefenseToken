@@ -1,9 +1,9 @@
-![RobustCoin](logo.png "RobustCoin")
+![SafetyCoin](logo.png "SafetyCoin")
 
-# Robust Coin smart contract
+# Safety Coin smart contract
 
 * _Standart_        : ERC20
-* _Name_            : RobustCoin
+* _Name_            : SafetyCoin
 * _Ticket_          : RIC
 * _Decimals_        : 18
 * _Emission_        : Mintable
@@ -13,7 +13,7 @@
 
 ## Summary percentage distribution of tokens by all stages
 
-* _Founders_ - 10%
+* _Team_ - 10%
 * _Early investors_ - 15%
 * _Bounty_ - 5%
 * _Presale_ - 5%
@@ -27,11 +27,11 @@ Crowdsale contracts have special function to retrieve transferred in errors toke
 Also crowdsale contracts have special function to direct mint tokens in wei value (featue implemneted to support external pay gateway).
 
 ### Contracts contains
-1. _RobustCoin_ - Token contract
-2. _Presale_ - Presale contract
+1. _SafetyCoin_ - Token contract
+2. _PreICO_ - PreICO contract
 3. _Mainsale_ - ICO contract
 4. _Configurator_ - contract with main configuration for production
-4. _FoundersWallet_ - wallet for freeze bounty tokens
+4. _TeamWallet_ - wallet for freeze team tokens
 
 ### How to manage contract
 To start working with contract you should follow next steps:
@@ -59,28 +59,28 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 * _Minimal insvested limit_     : 0.1 ETH
 * _Bounty tokens percent_       : 5% 
-* _Founders tokens percent_     : 10% 
+* _Team tokens percent_         : 10% 
 * _For sale tokens percent_     : 85% 
-* _Founders tokens wallet_      : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
+* _Team tokens wallet_          : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
 * _Bounty tokens wallet_        : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
 * _Contract owner_              : 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766
 
 ### Links
 1. _Token_ -
-2. _Presale_ -
+2. _PreICO_ -
 3. _Mainsale_ -
-3. _FoundersWallet_ -
+3. _TeamWallet_ -
 
 ### Crowdsale stages
 
 #### Features
 Tokens can manually mint at any time untill ICO finished.
 
-#### Founders freeze wallet
+#### Team freeze wallet
 * 30% tokens unlocked after 01 Dec 2018 00:00:00 GMT
 * 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
 
-#### Presale
+#### PreICO
 * _Price_                       : 1 ETH = 6667 Tokens
 * _Softcap_                     : 1000 ETH
 * _Hardcap_                     : 11 250 ETH
