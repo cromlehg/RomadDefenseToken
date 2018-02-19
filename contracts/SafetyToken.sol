@@ -2,9 +2,9 @@ pragma solidity ^0.4.18;
 
 import './MintableToken.sol';
 
-contract RobustCoin is MintableToken {
+contract SafetyToken is MintableToken {
 
-  string public constant name = "RobustCoin";
+  string public constant name = "SafetyToken";
 
   string public constant symbol = "RIC";
 

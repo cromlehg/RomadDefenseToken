@@ -2,78 +2,78 @@ pragma solidity ^0.4.18;
 
 import './ownership/Ownable.sol';
 import './MintableToken.sol';
-import './RobustCoin.sol';
-import './Presale.sol';
-import './Mainsale.sol';
+import './SafetyToken.sol';
+import './PreICO.sol';
+import './ICO.sol';
 import './DoubleStageFreezeTokensWallet.sol';
 
 contract Configurator is Ownable {
 
   MintableToken public token;
 
-  Presale public presale;
+  PreICO public preICO;
 
-  Mainsale public mainsale;
+  ICO public ico;
 
-  DoubleStageFreezeTokensWallet public foundersTokensWallet;
+  DoubleStageFreezeTokensWallet public teamTokensWallet;
 
   function deploy() public onlyOwner {
 
-    token = new RobustCoin();
+    token = new SafetyToken();
 
-    presale = new Presale();
+    preICO = new PreICO();
 
-    presale.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
-    presale.setStart(1518393600);
-    presale.setPeriod(7);
-    presale.setPrice(6667000000000000000000);
-    presale.setSoftcap(1000000000000000000000);
-    presale.setMinInvestedLimit(100000000000000000);
-    presale.setToken(token);
-    presale.setHardcap(11250000000000000000000);
-    token.setSaleAgent(presale);
+    preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
+    preICO.setStart(1518393600);
+    preICO.setPeriod(7);
+    preICO.setPrice(6667000000000000000000);
+    preICO.setSoftcap(1000000000000000000000);
+    preICO.setMinInvestedLimit(100000000000000000);
+    preICO.setToken(token);
+    preICO.setHardcap(11250000000000000000000);
+    token.setSaleAgent(preICO);
 
-    mainsale = new Mainsale();
+    ico = new ICO();
 
-    mainsale.addMilestone(6, 10);
-    mainsale.addMilestone(6, 9);
-    mainsale.addMilestone(6, 8);
-    mainsale.addMilestone(6, 7);
-    mainsale.addMilestone(6, 6);
-    mainsale.addMilestone(6, 5);
-    mainsale.addMilestone(6, 4);
-    mainsale.addMilestone(6, 3);
-    mainsale.addMilestone(6, 2);
-    mainsale.addMilestone(3, 1);
-    mainsale.addMilestone(3, 0);
-    mainsale.setMinInvestedLimit(100000000000000000);
-    mainsale.setToken(token);
-    mainsale.setPrice(5000000000000000000000);
-    mainsale.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
-    mainsale.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
-    mainsale.setStart(1520640000);
-    mainsale.setHardcap(47500000000000000000000);
-    mainsale.setFoundersTokensPercent(10);
-    mainsale.setBountyTokensPercent(5);
+    ico.addMilestone(6, 10);
+    ico.addMilestone(6, 9);
+    ico.addMilestone(6, 8);
+    ico.addMilestone(6, 7);
+    ico.addMilestone(6, 6);
+    ico.addMilestone(6, 5);
+    ico.addMilestone(6, 4);
+    ico.addMilestone(6, 3);
+    ico.addMilestone(6, 2);
+    ico.addMilestone(3, 1);
+    ico.addMilestone(3, 0);
+    ico.setMinInvestedLimit(100000000000000000);
+    ico.setToken(token);
+    ico.setPrice(5000000000000000000000);
+    ico.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
+    ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
+    ico.setStart(1520640000);
+    ico.setHardcap(47500000000000000000000);
+    ico.setTeamTokensPercent(10);
+    ico.setBountyTokensPercent(5);
 
-    foundersTokensWallet = new DoubleStageFreezeTokensWallet();
-    foundersTokensWallet.setMasterPercent(30);
-    foundersTokensWallet.setWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
-    foundersTokensWallet.setToken(token);
-    foundersTokensWallet.setFirstDate(1543622400);
-    foundersTokensWallet.setSecondDate(1567296000);
-    foundersTokensWallet.activate();
+    teamTokensWallet = new DoubleStageFreezeTokensWallet();
+    teamTokensWallet.setMasterPercent(30);
+    teamTokensWallet.setWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
+    teamTokensWallet.setToken(token);
+    teamTokensWallet.setFirstDate(1543622400);
+    teamTokensWallet.setSecondDate(1567296000);
+    teamTokensWallet.activate();
 
-    mainsale.setFoundersTokensWallet(foundersTokensWallet);
+    ico.setTeamTokensWallet(teamTokensWallet);
 
-    presale.setNextSaleAgent(mainsale);
+    preICO.setNextSaleAgent(ico);
 
     address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
 
-    foundersTokensWallet.transferOwnership(manager);
+    teamTokensWallet.transferOwnership(manager);
     token.transferOwnership(manager);
-    presale.transferOwnership(manager);
-    mainsale.transferOwnership(manager);
+    preICO.transferOwnership(manager);
+    ico.transferOwnership(manager);
   }
 
 }

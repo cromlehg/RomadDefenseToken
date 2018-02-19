@@ -1,28 +1,28 @@
 pragma solidity ^0.4.18;
 
-import './RobustCoinCommonSale.sol';
+import './SafetyTokenCommonSale.sol';
 import './StagedCrowdsale.sol';
 
-contract Mainsale is StagedCrowdsale, RobustCoinCommonSale {
+contract ICO is StagedCrowdsale, SafetyTokenCommonSale {
 
-  address public foundersTokensWallet;
+  address public teamTokensWallet;
 
   address public bountyTokensWallet;
 
-  uint public foundersTokensPercent;
+  uint public teamTokensPercent;
 
   uint public bountyTokensPercent;
 
-  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner {
-    foundersTokensPercent = newFoundersTokensPercent;
+  function setTeamTokensPercent(uint newTeamTokensPercent) public onlyOwner {
+    teamTokensPercent = newTeamTokensPercent;
   }
 
   function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner {
     bountyTokensPercent = newBountyTokensPercent;
   }
 
-  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner {
-    foundersTokensWallet = newFoundersTokensWallet;
+  function setTeamTokensWallet(address newTeamTokensWallet) public onlyOwner {
+    teamTokensWallet = newTeamTokensWallet;
   }
 
   function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner {
@@ -32,7 +32,7 @@ contract Mainsale is StagedCrowdsale, RobustCoinCommonSale {
   function calculateTokens(uint _invested) internal returns(uint) {
     uint milestoneIndex = currentMilestone(start);
     Milestone storage milestone = milestones[milestoneIndex];
-    
+
     uint tokens = _invested.mul(price).div(1 ether);
     if(milestone.bonus > 0) {
       tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
@@ -41,12 +41,12 @@ contract Mainsale is StagedCrowdsale, RobustCoinCommonSale {
   }
 
   function finish() public onlyOwner {
-    uint summaryTokensPercent = bountyTokensPercent.add(foundersTokensPercent);
+    uint summaryTokensPercent = bountyTokensPercent.add(teamTokensPercent);
     uint mintedTokens = token.totalSupply();
     uint allTokens = mintedTokens.mul(percentRate).div(percentRate.sub(summaryTokensPercent));
-    uint foundersTokens = allTokens.mul(foundersTokensPercent).div(percentRate);
+    uint foundersTokens = allTokens.mul(teamTokensPercent).div(percentRate);
     uint bountyTokens = allTokens.mul(bountyTokensPercent).div(percentRate);
-    mintTokens(foundersTokensWallet, foundersTokens);
+    mintTokens(teamTokensWallet, foundersTokens);
     mintTokens(bountyTokensWallet, bountyTokens);
     token.finishMinting();
   }
