@@ -6,7 +6,7 @@ contract SafetyToken is MintableToken {
 
   string public constant name = "SafetyToken";
 
-  string public constant symbol = "RIC";
+  string public constant symbol = "RBC";
 
   uint32 public constant decimals = 18;
 
