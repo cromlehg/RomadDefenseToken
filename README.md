@@ -23,7 +23,7 @@
 ## Smart-contracts description
 
 The tokens for the bounty and the team are minted after the ICO  is finished.  
-There is a special function to return 3rd party (non-ETH) investments that were made by mistake (retrieveTokens).  
+There is a special function to return 3rd party (non-ETH) investments that were made by mistake (function retrieveTokens()).  
 Each stage has a direct minting function in wei. This is made to support the external payment gateways.
 
 ### Contracts contains
