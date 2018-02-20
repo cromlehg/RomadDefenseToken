@@ -5,8 +5,9 @@ import './PercentRateProvider.sol';
 import './MintableToken.sol';
 import './WalletProvider.sol';
 import './InvestedProvider.sol';
+import './RetrieveTokensFeature.sol';
 
-contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider {
+contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider, RetrieveTokensFeature {
 
   using SafeMath for uint;
 

@@ -22,9 +22,9 @@
 
 ## Smart-contracts description
 
-Contract mint bounty and founders tokens after main sale stage finished. 
-Crowdsale contracts have special function to retrieve transferred in errors tokens.
-Also crowdsale contracts have special function to direct mint tokens in wei value (featue implemneted to support external pay gateway).
+The tokens for the bounty and the team are minted after the ICO  is finished.  
+There is a special function to return 3rd party (non-ETH) investments that were made by mistake (retrieveTokens).  
+Each stage has a direct minting function in wei. This is made to support the external payment gateways.
 
 ### Contracts contains
 1. _SafetyCoin_ - Token contract
