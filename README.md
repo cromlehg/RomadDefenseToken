@@ -4,7 +4,7 @@
 
 * _Standart_        : ERC20
 * _Name_            : SafetyCoin
-* _Ticket_          : RIC
+* _Ticket_          : SFT
 * _Decimals_        : 18
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
