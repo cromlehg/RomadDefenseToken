@@ -13,12 +13,9 @@
 
 ## Summary percentage distribution of tokens by all stages
 
-* _Team_ - 10%
-* _Early investors_ - 15%
+* _Team_ - 15%
 * _Bounty_ - 5%
-* _Presale_ - 5%
-* _PreICO_ - 15%
-* _ICO_ - 50%
+* _For sale_ - 80%
 
 ## Smart-contracts description
 
