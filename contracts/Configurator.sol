@@ -53,7 +53,7 @@ contract Configurator is Ownable {
     ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     ico.setStart(1520640000);
     ico.setHardcap(47500000000000000000000);
-    ico.setTeamTokensPercent(10);
+    ico.setTeamTokensPercent(15);
     ico.setBountyTokensPercent(5);
 
     teamTokensWallet = new DoubleStageFreezeTokensWallet();
