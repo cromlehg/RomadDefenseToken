@@ -3,7 +3,7 @@ import capped from './presale/capped';
 import refundable from './presale/refundable';
 import additional from './presale/additional';
 
-const token = artifacts.require('SafetyToken.sol');
+const token = artifacts.require('RomadDefenseToken.sol');
 const crowdsale = artifacts.require('PreICO.sol');
 
 contract('Presale - common crowdsale test', function (accounts) {

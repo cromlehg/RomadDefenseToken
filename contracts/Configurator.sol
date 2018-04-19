@@ -26,7 +26,7 @@ contract Configurator is Ownable {
     preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
     preICO.setStart(1518393600);
     preICO.setPeriod(7);
-    preICO.setPrice(6667000000000000000000);
+    preICO.setPrice(6667);
     preICO.setSoftcap(1000000000000000000000);
     preICO.setMinInvestedLimit(100000000000000000);
     preICO.setToken(token);
@@ -48,7 +48,7 @@ contract Configurator is Ownable {
     ico.addMilestone(3, 0);
     ico.setMinInvestedLimit(100000000000000000);
     ico.setToken(token);
-    ico.setPrice(5000000000000000000000);
+    ico.setPrice(5000);
     ico.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
     ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     ico.setStart(1520640000);

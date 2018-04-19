@@ -68,7 +68,9 @@ export default function (Token, Crowdsale, wallets) {
       .plus(secondInvestorTokens)
       .plus(foundersTokens)
       .plus(bountyTokens);
-    assert.equal(foundersTokens.div(totalTokens), 0.10);
-    assert.equal(bountyTokens.div(totalTokens), 0.05);
+
+    const percentRate = await crowdsale.percentRate();
+    assert.equal(Math.round(foundersTokens.mul(percentRate).div(totalTokens)), 10);
+    assert.equal(Math.round(bountyTokens.mul(percentRate).div(totalTokens)), 5);
   });
 }

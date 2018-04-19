@@ -1,5 +1,5 @@
 {
-  "name": "RobustCoin",
+  "name": "RomadDefenseToken",
   "version": "1.0.0",
   "description": "",
   "main": "truffle.js",
@@ -27,15 +27,15 @@
     "test": "./scripts/test.sh",
     "flatten": "./node_modules/.bin/truffle-flattener ./contracts/Configurator.sol > ./deploy/contracts.sol",
     "flatten-configurator": "./node_modules/.bin/truffle-flattener ./contracts/TestConfigurator.sol > ./deploy/TestConfigurator.sol",
-    "flatten-token": "./node_modules/.bin/truffle-flattener ./contracts/RobustCoin.sol > ./deploy/Token.sol",
-    "flatten-presale": "./node_modules/.bin/truffle-flattener ./contracts/Presale.sol > ./deploy/Presale.sol",
-    "flatten-mainsale": "./node_modules/.bin/truffle-flattener ./contracts/Mainsale.sol > ./deploy/Mainsale.sol",
+    "flatten-token": "./node_modules/.bin/truffle-flattener ./contracts/RomadDefenseToken.sol > ./deploy/RomadDefenseToken.sol",
+    "flatten-presale": "./node_modules/.bin/truffle-flattener ./contracts/PreICO.sol > ./deploy/PreICO.sol",
+    "flatten-mainsale": "./node_modules/.bin/truffle-flattener ./contracts/ICO.sol > ./deploy/ICO.sol",
     "flatten-wallet": "./node_modules/.bin/truffle-flattener ./contracts/DoubleStageFreezeTokensWallet.sol > ./deploy/Wallet.sol",
     "flatten-test": "npm run flatten-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale && npm run flatten-wallet"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cromlehg/RobustCoin.git"
+    "url": "git+https://github.com/cromlehg/RomadDefenseToken.git"
   },
   "keywords": [
     "solidity",
@@ -47,7 +47,7 @@
   "author": "Alexander Strakh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cromlehg/RobustCoin/issues"
+    "url": "https://github.com/cromlehg/RomadDefenseToken/issues"
   },
-  "homepage": "https://github.com/cromlehg/RobustCoin#readme"
+  "homepage": "https://github.com/cromlehg/RomadDefenseToken#readme"
 }

@@ -71,7 +71,7 @@ contract TestConfigurator is Ownable {
       preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
       preICO.setStart(1524096000);
       preICO.setPeriod(7);
-      preICO.setPrice(6667000000000000000000);
+      preICO.setPrice(6667);
       preICO.setMinInvestedLimit(100000000000000000);
       preICO.setSoftcap(1000000000000000000000);
       preICO.setHardcap(11250000000000000000000);
@@ -93,7 +93,7 @@ contract TestConfigurator is Ownable {
       ico.addMilestone(6, 2);
       ico.addMilestone(3, 1);
       ico.addMilestone(3, 0);
-      ico.setPrice(5000000000000000000000);
+      ico.setPrice(5000);
       ico.setMinInvestedLimit(100000000000000000);
       ico.setHardcap(47500000000000000000000);
       ico.setTeamTokensWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);

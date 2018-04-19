@@ -44,13 +44,13 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   it('should mintTokensExternal', async function () {
-    await crowdsale.mintTokensExternal(wallets[4], 100, {from: wallets[1]}).should.be.fulfilled; 
+    await crowdsale.mintTokensExternal(wallets[4], tokens(100), {from: wallets[1]}).should.be.fulfilled;
     const balance = await token.balanceOf(wallets[4]);
     balance.should.bignumber.equal(100);
   });
-  
+
   it('should mintTokensByETHExternal', async function () {
-    await crowdsale.mintTokensByETHExternal(wallets[5], tokens(1), {from: wallets[1]}).should.be.fulfilled;
+    await crowdsale.mintTokensByETHExternal(wallets[5], ether(1), {from: wallets[1]}).should.be.fulfilled;
     const balance = await token.balanceOf(wallets[5]);
     balance.should.bignumber.equal(this.price.times(1));
   });

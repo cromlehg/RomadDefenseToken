@@ -11,7 +11,7 @@ const should = require('chai')
   .should();
 
 const Configurator = artifacts.require('Configurator.sol');
-const Token = artifacts.require('SafetyToken.sol');
+const Token = artifacts.require('RomadDefenseToken.sol');
 const Presale = artifacts.require('PreICO.sol');
 const Mainsale = artifacts.require('ICO.sol');
 const TeamTokensWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
