@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import './ownership/Ownable.sol';
 import './MintableToken.sol';
-import './SafetyToken.sol';
+import './RomadDefenseToken.sol';
 import './PreICO.sol';
 import './ICO.sol';
 import './DoubleStageFreezeTokensWallet.sol';
@@ -19,7 +19,7 @@ contract Configurator is Ownable {
 
   function deploy() public onlyOwner {
 
-    token = new SafetyToken();
+    token = new RomadDefenseToken();
 
     preICO = new PreICO();
 

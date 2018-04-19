@@ -2,7 +2,7 @@ pragma solidity ^0.4.18;
 
 import './ownership/Ownable.sol';
 
-contract SafetyToken {
+contract RomadDefenseToken {
   function setSaleAgent(address newSaleAgent) public;
   function transferOwnership(address newOwner) public;
 }
@@ -47,12 +47,12 @@ contract DoubleStageFreezeTokensWallet {
 
 contract TestConfigurator is Ownable {
 
-  SafetyToken public token;
+  RomadDefenseToken public token;
   PreICO public preICO;
   ICO public ico;
   DoubleStageFreezeTokensWallet public bountyWallet;
     function setToken(address _token) public onlyOwner {
-      token = SafetyToken(_token);
+      token = RomadDefenseToken(_token);
     }
 
     function setPreICO(address _preICO) public onlyOwner {
@@ -69,7 +69,7 @@ contract TestConfigurator is Ownable {
 
     function deploy() public onlyOwner {
       preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
-      preICO.setStart(1518393600);
+      preICO.setStart(1524096000);
       preICO.setPeriod(7);
       preICO.setPrice(6667000000000000000000);
       preICO.setMinInvestedLimit(100000000000000000);
@@ -81,7 +81,7 @@ contract TestConfigurator is Ownable {
       preICO.setNextSaleAgent(ico);
 
       ico.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
-      ico.setStart(1520640000);
+      ico.setStart(1524096000);
       ico.addMilestone(6, 10);
       ico.addMilestone(6, 9);
       ico.addMilestone(6, 8);

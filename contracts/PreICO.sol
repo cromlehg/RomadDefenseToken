@@ -1,11 +1,11 @@
 pragma solidity ^0.4.18;
 
-import './SafetyTokenCommonSale.sol';
+import './RomadDefenseTokenCommonSale.sol';
 import './NextSaleAgentFeature.sol';
 import './ICO.sol';
 import './SoftcapFeature.sol';
 
-contract PreICO is NextSaleAgentFeature, SoftcapFeature, SafetyTokenCommonSale {
+contract PreICO is NextSaleAgentFeature, SoftcapFeature, RomadDefenseTokenCommonSale {
 
   uint public period;
 
