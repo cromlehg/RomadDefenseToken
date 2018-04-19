@@ -1,11 +1,11 @@
 ![SafetyCoin](logo.png "SafetyCoin")
 
-# Safety Coin smart contract
+# RomadDefenseToken smart contract
 
 * _Standart_        : ERC20
-* _Name_            : SafetyCoin
-* _Ticket_          : SFT
-* _Decimals_        : 18
+* _Name_            : ROMAD Defense token
+* _Ticket_          : RDT
+* _Decimals_        : 0
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
 * _Fiat dependency_ : No
@@ -24,9 +24,9 @@ There is a special function to return 3rd party tokens that were sent by mistake
 Each stage has a direct minting function in wei. This is made to support the external payment gateways.
 
 ### Contracts contains
-1. _SafetyCoin_ - Token contract
+1. _RomadDefenseToken_ - Token contract
 2. _PreICO_ - PreICO contract
-3. _Mainsale_ - ICO contract
+3. _ICO_ - ICO contract
 4. _Configurator_ - contract with main configuration for production
 4. _TeamWallet_ - wallet for freeze team tokens
 
@@ -65,7 +65,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 ### Links
 1. _Token_ -
 2. _PreICO_ -
-3. _Mainsale_ -
+3. _ICO_ -
 3. _TeamWallet_ -
 
 ### Crowdsale stages
