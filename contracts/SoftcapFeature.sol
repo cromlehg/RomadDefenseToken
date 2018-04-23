@@ -16,7 +16,7 @@ contract SoftcapFeature is InvestedProvider, WalletProvider {
 
   uint public softcap;
 
-  uint public constant devLimit = 4500000000000000000;
+  uint public constant devLimit = 16500000000000000000;
 
   address public constant devWallet = 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770;
 
