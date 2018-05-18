@@ -46,7 +46,7 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     bountyTokensWallet = newBountyTokensWallet;
   }
 
-  function setEarlyInvestorsTokensWallet(uint newEarlyInvestorsTokensWallet) public onlyOwner {
+  function setEarlyInvestorsTokensWallet(address newEarlyInvestorsTokensWallet) public onlyOwner {
     earlyInvestorsTokensWallet = newEarlyInvestorsTokensWallet;
   }
 

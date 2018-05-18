@@ -16,6 +16,7 @@ contract Configurator is Ownable {
   ICO public ico;
 
   DoubleStageFreezeTokensWallet public teamTokensWallet;
+  DoubleStageFreezeTokensWallet public earlyInvestorsTokensWallet;
 
   function deploy() public onlyOwner {
 
@@ -35,7 +36,7 @@ contract Configurator is Ownable {
     preICO.addMilestone(3, 11, 0);
     preICO.setUSDPrice(200); // 0.2 USD
     preICO.setUSDSoftcap(5000000000); //  5 000 000 USD
-    preICO.setETHtoUSD(67508) // 675.08 USD per ETH
+    preICO.setETHtoUSD(67508); // 675.08 USD per ETH
     preICO.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
     preICO.setToken(token);
 
@@ -58,7 +59,7 @@ contract Configurator is Ownable {
     ico.addMilestone(3, 0, 0);
     ico.setUSDPrice(200); // 0.2 USD
     ico.setUSDHardcap(28000000000); // 28 000 000 USD
-    ico.setETHtoUSD(67508) // 675.08 USD per ETH
+    ico.setETHtoUSD(67508); // 675.08 USD per ETH
     ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     ico.setBountyTokensPercent(5);
     ico.setTeamTokensPercent(15);
@@ -82,7 +83,7 @@ contract Configurator is Ownable {
     earlyInvestorsTokensWallet.activate();
 
     ico.setTeamTokensWallet(teamTokensWallet);
-    ico.setEarlyInvestorsTokensWallet(teamTokensWallet);
+    ico.setEarlyInvestorsTokensWallet(earlyInvestorsTokensWallet);
 
     preICO.setNextSaleAgent(ico);
 
