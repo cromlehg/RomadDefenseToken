@@ -9,7 +9,6 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
 
   uint public period;
   uint public USDSoftcap;
-  uint public USDHardcap;
   uint public USDPrice; // usd per token
   uint public ETHtoUSD; // usd per eth
 
@@ -52,21 +51,12 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
     USDSoftcap = newUSDSoftcap;
   }
 
-  // three digits
-  function setUSDHardcap(uint newUSDHardcap) public onlyOwner {
-    USDHardcap = newUSDHardcap;
-  }
-
   function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
     USDPrice = newUSDPrice;
   }
 
   function updateSoftcap() internal {
     softcap = USDSoftcap.mul(1 ether).div(ETHtoUSD);
-  }
-
-  function updateHardcap() internal {
-    hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
   }
 
   function updatePrice() internal {
@@ -76,7 +66,6 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
   function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
     ETHtoUSD = newETHtoUSD;
     updateSoftcap();
-    updateHardcap();
     updatePrice();
   }
 

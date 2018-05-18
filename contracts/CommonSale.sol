@@ -21,17 +21,6 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider, Re
 
   MintableToken public token;
 
-  uint public hardcap;
-
-  modifier isUnderHardcap() {
-    require(invested < hardcap);
-    _;
-  }
-
-  function setHardcap(uint newHardcap) public onlyOwner {
-    hardcap = newHardcap;
-  }
-
   modifier onlyDirectMintAgentOrOwner() {
     require(directMintAgent == msg.sender || owner == msg.sender);
     _;
@@ -79,7 +68,7 @@ contract CommonSale is InvestedProvider, WalletProvider, PercentRateProvider, Re
     return mintTokensByETH(to, _invested);
   }
 
-  function mintTokensByETH(address to, uint _invested) internal isUnderHardcap returns(uint) {
+  function mintTokensByETH(address to, uint _invested) internal returns(uint) {
     invested = invested.add(_invested);
     uint tokens = calculateTokens(_invested);
     mintTokens(to, tokens);

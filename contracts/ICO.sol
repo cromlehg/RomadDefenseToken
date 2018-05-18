@@ -8,12 +8,23 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
   address public teamTokensWallet;
   address public bountyTokensWallet;
   address public earlyInvestorsTokensWallet;
+  uint public hardcap;
   uint public teamTokensPercent;
   uint public bountyTokensPercent;
   uint public earlyInvestorsTokensPercent;
   uint public USDHardcap;
   uint public USDPrice; // usd per token
   uint public ETHtoUSD; // usd per eth
+
+
+  modifier isUnderHardcap() {
+    require(invested < hardcap);
+    _;
+  }
+
+  function setHardcap(uint newHardcap) public onlyOwner {
+    hardcap = newHardcap;
+  }
 
   function setTeamTokensPercent(uint newTeamTokensPercent) public onlyOwner {
     teamTokensPercent = newTeamTokensPercent;
@@ -88,6 +99,10 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
 
   function endSaleDate() public view returns(uint) {
     return lastSaleDate(start);
+  }
+
+  function mintTokensByETH(address to, uint _invested) internal isUnderHardcap returns(uint) {
+    super.mintTokensByETH(to, _invested);
   }
 
 }
