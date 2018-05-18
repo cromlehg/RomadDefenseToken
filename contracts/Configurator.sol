@@ -74,7 +74,16 @@ contract Configurator is Ownable {
     teamTokensWallet.setSecondDate(1567296000); // 01 Sep 2019 00:00:00 GMT
     teamTokensWallet.activate();
 
+    earlyInvestorsTokensWallet = new DoubleStageFreezeTokensWallet();
+    earlyInvestorsTokensWallet.setMasterPercent(50);
+    earlyInvestorsTokensWallet.setWallet(0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5);
+    earlyInvestorsTokensWallet.setToken(token);
+    earlyInvestorsTokensWallet.setFirstDate(1543622400); // 01 Dec 2018 00:00:00 GMT
+    earlyInvestorsTokensWallet.setSecondDate(1567296000); // 01 Sep 2019 00:00:00 GMT
+    earlyInvestorsTokensWallet.activate();
+
     ico.setTeamTokensWallet(teamTokensWallet);
+    ico.setEarlyInvestorsTokensWallet(teamTokensWallet);
 
     preICO.setNextSaleAgent(ico);
 
