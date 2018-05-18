@@ -91,6 +91,7 @@ contract Configurator is Ownable {
     address manager = 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766;
 
     teamTokensWallet.transferOwnership(manager);
+    earlyInvestorsTokensWallet.transferOwnership(manager);
     token.transferOwnership(manager);
     preICO.transferOwnership(manager);
     ico.transferOwnership(manager);
