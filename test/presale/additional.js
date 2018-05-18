@@ -35,6 +35,7 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setStart(this.start);
     await crowdsale.setPeriod(this.duration);
+    await crowdsale.addMilestone(this.duration, 0, 0);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
     await crowdsale.setWallet(wallets[2]);
     await crowdsale.setToken(token.address);

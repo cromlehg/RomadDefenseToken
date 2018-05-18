@@ -3,6 +3,7 @@ import common from './mainsale/common';
 import milestonebonus from './mainsale/milestonebonus';
 import bounty from './mainsale/bounty';
 import additional from './mainsale/additional';
+import exchangeable from './mainsale/exchangeable';
 
 const token = artifacts.require('RomadDefenseToken.sol');
 const crowdsale = artifacts.require('ICO.sol');
@@ -19,11 +20,14 @@ contract('Mainsale - milestone bonus test', function (accounts) {
   milestonebonus(token, crowdsale, accounts);
 });
 
-
 contract('Mainsale - bounty test', function (accounts) {
   bounty(token, crowdsale, accounts);
 });
 
 contract('Mainsale - additional features test', function (accounts) {
   additional(token, crowdsale, accounts);
+});
+
+contract('Mainsale - USD exchange features test', function (accounts) {
+  exchangeable(token, crowdsale, accounts);
 });
