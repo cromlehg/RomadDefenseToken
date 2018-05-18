@@ -35,7 +35,6 @@ contract Configurator is Ownable {
     preICO.addMilestone(3, 11, 0);
     preICO.setUSDPrice(200); // 0.2 USD
     preICO.setUSDSoftcap(5000000000); //  5 000 000 USD
-    preICO.setUSDHardcap(28000000000); // 28 000 000 USD
     preICO.setETHtoUSD(67508) // 675.08 USD per ETH
     preICO.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
     preICO.setToken(token);
@@ -96,4 +95,3 @@ contract Configurator is Ownable {
   }
 
 }
-
