@@ -5,12 +5,23 @@ import './NextSaleAgentFeature.sol';
 import './ICO.sol';
 import './SoftcapFeature.sol';
 
-contract PreICO is NextSaleAgentFeature, SoftcapFeature, RomadDefenseTokenCommonSale {
+contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadDefenseTokenCommonSale {
 
   uint public period;
+  uint public USDSoftcap;
+  uint public USDHardcap;
+  uint public USDPrice; // usd per token
+  uint public ETHtoUSD; // usd per eth
 
   function calculateTokens(uint _invested) internal returns(uint) {
-    return _invested.mul(price).div(1 ether);
+    uint milestoneIndex = currentMilestone(start);
+    Milestone storage milestone = milestones[milestoneIndex];
+    require(_invested >= milestone.minInvestedLimit);
+    uint tokens = _invested.mul(price).div(1 ether);
+    if (milestone.bonus > 0) {
+      tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
+    }
+    return tokens;
   }
 
   function mintTokensByETH(address to, uint _invested) internal returns(uint) {
@@ -33,11 +44,44 @@ contract PreICO is NextSaleAgentFeature, SoftcapFeature, RomadDefenseTokenCommon
   }
 
   function endSaleDate() public view returns(uint) {
-    return start.add(period * 1 days);
+    return lastSaleDate(start);
+  }
+
+  // three digits
+  function setUSDSoftcap(uint newUSDSoftcap) public onlyOwner {
+    USDSoftcap = newUSDSoftcap;
+  }
+
+  // three digits
+  function setUSDHardcap(uint newUSDHardcap) public onlyOwner {
+    USDHardcap = newUSDHardcap;
+  }
+
+  function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
+    USDPrice = newUSDPrice;
+  }
+
+  function updateSoftcap() internal {
+    softcap = USDSoftcap.mul(1 ether).div(ETHtoUSD);
+  }
+
+  function updateHardcap() internal {
+    hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
+  }
+
+  function updatePrice() internal {
+    price = ETHtoUSD.mul(1 ether).div(USDPrice);
+  }
+
+  function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
+    ETHtoUSD = newETHtoUSD;
+    updateSoftcap();
+    updateHardcap();
+    updatePrice();
   }
 
   function fallback() internal minInvestLimited(msg.value) returns(uint) {
-    require(now >= start && now < endSaleDate());
+    require (now >= start && now < endSaleDate());
     return mintTokensByETH(msg.sender, msg.value);
   }
 
