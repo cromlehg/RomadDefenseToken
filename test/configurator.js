@@ -15,6 +15,7 @@ const Token = artifacts.require('RomadDefenseToken.sol');
 const Presale = artifacts.require('PreICO.sol');
 const Mainsale = artifacts.require('ICO.sol');
 const TeamTokensWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
+const EarlyInvestorsTokensWallet = artifacts.require('DoubleStageFreezeTokensWallet.sol');
 
 contract('Configurator integration test', function (accounts) {
   let configurator;
@@ -22,6 +23,7 @@ contract('Configurator integration test', function (accounts) {
   let presale;
   let mainsale;
   let teamTokensWallet;
+  let earlyInvestorsTokensWallet;
 
   const manager = '0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766';
 
@@ -35,11 +37,13 @@ contract('Configurator integration test', function (accounts) {
     const presaleAddress = await configurator.preICO();
     const mainsaleAddress = await configurator.ico();
     const teamTokensWalletAddress = await configurator.teamTokensWallet();
+    const earlyInvestorsTokensWalletAddress = await configurator.earlyInvestorsTokensWallet();
 
     token = await Token.at(tokenAddress);
     presale = await Presale.at(presaleAddress);
     mainsale = await Mainsale.at(mainsaleAddress);
     teamTokensWallet = await TeamTokensWallet.at(teamTokensWalletAddress);
+    earlyInvestorsTokensWallet = await EarlyInvestorsTokensWallet.at(earlyInvestorsTokensWalletAddress);
   });
 
 
@@ -58,21 +62,21 @@ contract('Configurator integration test', function (accounts) {
     mainsaleOwner.should.bignumber.equal(manager);
   });
 
-  it('contracts should have bounty wallet address', async function () {
+  it('contracts should have team wallet address', async function () {
     const teamTokensWalletOwner = await teamTokensWallet.owner();
     teamTokensWalletOwner.should.bignumber.equal(manager);
   });
 
-  it('presale and mainsale should have start time as described in README', async function () {
-    const presaleStart = await presale.start();
-    presaleStart.should.bignumber.equal((new Date('12 Feb 2018 00:00:00 GMT')).getTime() / 1000);
-    const mainsaleStart = await mainsale.start();
-    mainsaleStart.should.bignumber.equal((new Date('10 Mar 2018 00:00:00 GMT')).getTime() / 1000);
+  it('contracts should have earlyInvestorsTokens wallet address', async function () {
+    const earlyInvestorsTokensWalletOwner = await earlyInvestorsTokensWallet.owner();
+    earlyInvestorsTokensWalletOwner.should.bignumber.equal(manager);
   });
 
-  it ('presale period should be as described in README', async function () {
-    const period = await presale.period();
-    period.should.bignumber.equal(7);
+  it('presale and mainsale should have start time as described in README', async function () {
+    const presaleStart = await presale.start();
+    presaleStart.should.bignumber.equal((new Date('27 May 2018 17:00:00 GMT')).getTime() / 1000);
+    const mainsaleStart = await mainsale.start();
+    mainsaleStart.should.bignumber.equal((new Date('24 Jun 2018 00:00:00 GMT')).getTime() / 1000);
   });
 
   it('bounty frizze wallet should have firstDate and secondDate time as described in README', async function () {
@@ -80,25 +84,6 @@ contract('Configurator integration test', function (accounts) {
     firstDate.should.bignumber.equal((new Date('01 Dec 2018 00:00:00 GMT')).getTime() / 1000);
     const secondDate = await teamTokensWallet.secondDate();
     secondDate.should.bignumber.equal((new Date('01 Sep 2019 00:00:00 GMT')).getTime() / 1000);
-  });
-
-  it ('presale and mainsale should have price as described in README', async function () {
-    const presalePrice = await presale.price();
-    presalePrice.should.bignumber.equal(tokens(6667));
-    const mainsalePrice = await mainsale.price();
-    mainsalePrice.should.bignumber.equal(tokens(5000));
-  });
-
-  it ('presale and mainsale should have hardcap as described in README', async function () {
-    const presaleHardcap = await presale.hardcap();
-    presaleHardcap.should.bignumber.equal(ether(11250));
-    const mainsaleHardcap = await mainsale.hardcap();
-    mainsaleHardcap.should.bignumber.equal(ether(47500));
-  });
-
-  it ('presale should have softcap as described in README', async function () {
-    const presaleSoftcap = await presale.softcap();
-    presaleSoftcap.should.bignumber.equal(ether(1000));
   });
 
   it ('presale and mainsale should have minimal insvested limit as described in README', async function () {
