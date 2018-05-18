@@ -62,7 +62,9 @@ contract Configurator is Ownable {
     ico.setETHtoUSD(67508); // 675.08 USD per ETH
     ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
     ico.setBountyTokensPercent(5);
-    ico.setTeamTokensPercent(15);
+    ico.setTeamTokensPercent(10);
+    ico.setAdvisorsTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
+    ico.setAdvisorsTokensPercent(5);
     ico.setEarlyInvestorsTokensPercent(15);
     ico.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
     ico.setToken(token);

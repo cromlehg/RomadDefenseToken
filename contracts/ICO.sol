@@ -6,10 +6,12 @@ import './StagedCrowdsale.sol';
 contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
 
   address public teamTokensWallet;
+  address public advisorsTokensWallet;
   address public bountyTokensWallet;
   address public earlyInvestorsTokensWallet;
   uint public hardcap;
   uint public teamTokensPercent;
+  uint public advisorsTokensPercent;
   uint public bountyTokensPercent;
   uint public earlyInvestorsTokensPercent;
   uint public USDHardcap;
@@ -30,6 +32,10 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     teamTokensPercent = newTeamTokensPercent;
   }
 
+  function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner {
+    advisorsTokensPercent = newAdvisorsTokensPercent;
+  }
+
   function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner {
     bountyTokensPercent = newBountyTokensPercent;
   }
@@ -40,6 +46,10 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
 
   function setTeamTokensWallet(address newTeamTokensWallet) public onlyOwner {
     teamTokensWallet = newTeamTokensWallet;
+  }
+
+  function setAdvisorsTokensWallet(address newAdvisorsTokensWallet) public onlyOwner {
+    advisorsTokensWallet = newAdvisorsTokensWallet;
   }
 
   function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner {
@@ -85,15 +95,17 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
   }
 
   function finish() public onlyOwner {
-    uint summaryTokensPercent = bountyTokensPercent.add(teamTokensPercent).add(earlyInvestorsTokensPercent);
+    uint summaryTokensPercent = bountyTokensPercent.add(teamTokensPercent).add(earlyInvestorsTokensPercent).add(advisorsTokensPercent);
     uint mintedTokens = token.totalSupply();
     uint allTokens = mintedTokens.mul(percentRate).div(percentRate.sub(summaryTokensPercent));
     uint foundersTokens = allTokens.mul(teamTokensPercent).div(percentRate);
     uint bountyTokens = allTokens.mul(bountyTokensPercent).div(percentRate);
     uint earlyInvestorsTokens = allTokens.mul(earlyInvestorsTokensPercent).div(percentRate);
+    uint advisorsTokens = allTokens.mul(advisorsTokensPercent).div(percentRate);
     mintTokens(teamTokensWallet, foundersTokens);
     mintTokens(bountyTokensWallet, bountyTokens);
     mintTokens(earlyInvestorsTokensWallet, earlyInvestorsTokens);
+    mintTokens(advisorsTokensWallet, advisorsTokens);
     token.finishMinting();
   }
 

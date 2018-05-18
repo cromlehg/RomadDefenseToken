@@ -53,6 +53,8 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setEarlyInvestorsTokensWallet(wallets[5]);
     await crowdsale.setEarlyInvestorsTokensPercent(15);
     await crowdsale.setBountyTokensPercent(5);
+    await crowdsale.setAdvisorsTokensWallet(wallets[6]);
+    await crowdsale.setAdvisorsTokensPercent(5);
     await crowdsale.transferOwnership(wallets[1]);
     await token.setSaleAgent(crowdsale.address);
     await token.transferOwnership(wallets[1]);
