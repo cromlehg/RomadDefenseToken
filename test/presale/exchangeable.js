@@ -28,8 +28,6 @@ export default function (Token, Crowdsale, wallets) {
     this.price = this.humanReadablePrice * 1000;
     this.humanReadableSoftcap = 5000000; // 5 000 000 USD
     this.softcap = this.humanReadableSoftcap * 1000;
-    this.humanReadableHardcap = 28000000; // 28 000 000 USD
-    this.hardcap = this.humanReadableHardcap * 1000;
     this.minInvestedLimit = ether(10);
     this.humanReadableETHtoUSD = 700; // 700 USD per ETH
     this.ETHtoUSD = this.humanReadableETHtoUSD * 1000;
@@ -38,7 +36,6 @@ export default function (Token, Crowdsale, wallets) {
     crowdsale = await Crowdsale.new();
     await crowdsale.setUSDPrice(this.price);
     await crowdsale.setUSDSoftcap(this.softcap);
-    await crowdsale.setUSDHardcap(this.hardcap);
     await crowdsale.setETHtoUSD(this.ETHtoUSD);
     await crowdsale.setStart(this.start);
     await crowdsale.addMilestone(this.duration, 0, 0);
@@ -50,23 +47,19 @@ export default function (Token, Crowdsale, wallets) {
     await token.transferOwnership(wallets[1]);
   });
 
-  it('should set price, softcap and hardcap correctyly', async function () {
+  it('should set price and softcap correctyly', async function () {
     const softcap = await crowdsale.softcap();
-    const hardcap = await crowdsale.hardcap();
     const price = await crowdsale.price();
     softcap.toPrecision(15).should.bignumber.equal(ether(this.softcap / this.ETHtoUSD).toPrecision(15));
-    hardcap.toPrecision(15).should.bignumber.equal(ether(this.hardcap / this.ETHtoUSD).toPrecision(15));
     price.toPrecision(15).should.bignumber.equal(ether(this.ETHtoUSD / this.price).toPrecision(15));
   });
 
-  it('should recalculate price, softcap and hardcap correctyly', async function () {
+  it('should recalculate price and softcap correctyly', async function () {
     const rate = 95000;
     await crowdsale.setETHtoUSD(rate, {from: wallets[1]});
     const softcap = await crowdsale.softcap();
-    const hardcap = await crowdsale.hardcap();
     const price = await crowdsale.price();
     softcap.toPrecision(15).should.bignumber.equal(ether(this.softcap / rate).toPrecision(15));
-    hardcap.toPrecision(15).should.bignumber.equal(ether(this.hardcap / rate).toPrecision(15));
     price.toPrecision(15).should.bignumber.equal(ether(rate / this.price).toPrecision(15));
   });
 
@@ -78,12 +71,6 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.sendTransaction({value: ether(investment), from: wallets[3]});
     const balance = await token.balanceOf(wallets[3]);
     balance.should.be.bignumber.equal(ether(investment * conversionRate / price));
-  });
-
-  it('should reject payments outside hardcap', async function () {
-    const investment = this.humanReadableHardcap / this.humanReadableETHtoUSD;
-    await crowdsale.sendTransaction({value: ether(investment), from: wallets[5]}).should.be.fulfilled;
-    await crowdsale.sendTransaction({value: ether(11), from: wallets[4]}).should.be.rejectedWith(EVMRevert);
   });
 
   it('should allow refunds after end if goal was not reached', async function () {
@@ -98,5 +85,4 @@ export default function (Token, Crowdsale, wallets) {
     const post = web3.eth.getBalance(wallets[3]);
     post.minus(pre).should.be.bignumber.equal(investment);
   });
-
 }

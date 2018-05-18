@@ -25,14 +25,12 @@ export default function (Token, Crowdsale, wallets) {
     this.afterEnd = this.end + duration.seconds(1);
     this.price = tokens(6667);
     this.softcap = ether(1000);
-    this.hardcap = ether(11250);
     this.minInvestedLimit = ether(0.1);
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
     await crowdsale.setPrice(this.price);
     await crowdsale.setSoftcap(this.softcap);
-    await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setStart(this.start);
     await crowdsale.setPeriod(this.duration);
     await crowdsale.addMilestone(this.duration, 0, 0);

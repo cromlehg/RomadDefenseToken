@@ -1,5 +1,4 @@
 import common from './presale/common';
-import capped from './presale/capped';
 import milestonebonus from './presale/milestonebonus';
 import refundable from './presale/refundable';
 import additional from './presale/additional';
@@ -10,10 +9,6 @@ const crowdsale = artifacts.require('PreICO.sol');
 
 contract('Presale - common crowdsale test', function (accounts) {
   common(token, crowdsale, accounts);
-});
-
-contract('Presale - capped crowdsale test', function (accounts) {
-  capped(token, crowdsale, accounts);
 });
 
 contract('Presale - milestone bonus test', function (accounts) {
