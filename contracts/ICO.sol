@@ -7,8 +7,10 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
 
   address public teamTokensWallet;
   address public bountyTokensWallet;
+  address public earlyInvestorsTokensWallet;
   uint public teamTokensPercent;
   uint public bountyTokensPercent;
+  uint public earlyInvestorsTokensPercent;
   uint public USDHardcap;
   uint public USDPrice; // usd per token
   uint public ETHtoUSD; // usd per eth
@@ -21,12 +23,20 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     bountyTokensPercent = newBountyTokensPercent;
   }
 
+  function setEarlyInvestorsTokensPercent(uint newEarlyInvestorsTokensPercent) public onlyOwner {
+    earlyInvestorsTokensPercent = newEarlyInvestorsTokensPercent;
+  }
+
   function setTeamTokensWallet(address newTeamTokensWallet) public onlyOwner {
     teamTokensWallet = newTeamTokensWallet;
   }
 
   function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner {
     bountyTokensWallet = newBountyTokensWallet;
+  }
+
+  function setEarlyInvestorsTokensWallet(uint newEarlyInvestorsTokensWallet) public onlyOwner {
+    earlyInvestorsTokensWallet = newEarlyInvestorsTokensWallet;
   }
 
   // three digits
@@ -64,13 +74,15 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
   }
 
   function finish() public onlyOwner {
-    uint summaryTokensPercent = bountyTokensPercent.add(teamTokensPercent);
+    uint summaryTokensPercent = bountyTokensPercent.add(teamTokensPercent).add(earlyInvestorsTokensPercent);
     uint mintedTokens = token.totalSupply();
     uint allTokens = mintedTokens.mul(percentRate).div(percentRate.sub(summaryTokensPercent));
     uint foundersTokens = allTokens.mul(teamTokensPercent).div(percentRate);
     uint bountyTokens = allTokens.mul(bountyTokensPercent).div(percentRate);
+    uint earlyInvestorsTokens = allTokens.mul(earlyInvestorsTokensPercent).div(percentRate);
     mintTokens(teamTokensWallet, foundersTokens);
     mintTokens(bountyTokensWallet, bountyTokens);
+    mintTokens(earlyInvestorsTokensWallet, earlyInvestorsTokens);
     token.finishMinting();
   }
 
