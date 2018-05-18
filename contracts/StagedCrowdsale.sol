@@ -10,6 +10,7 @@ contract StagedCrowdsale is Ownable {
   struct Milestone {
     uint period;
     uint bonus;
+    uint minInvestedLimit;
   }
 
   uint public totalPeriod;
@@ -20,9 +21,9 @@ contract StagedCrowdsale is Ownable {
     return milestones.length;
   }
 
-  function addMilestone(uint period, uint bonus) public onlyOwner {
+  function addMilestone(uint period, uint bonus, uint minInvestedLimit) public onlyOwner {
     require(period > 0);
-    milestones.push(Milestone(period, bonus));
+    milestones.push(Milestone(period, bonus, minInvestedLimit));
     totalPeriod = totalPeriod.add(period);
   }
 
@@ -40,7 +41,7 @@ contract StagedCrowdsale is Ownable {
     milestones.length--;
   }
 
-  function changeMilestone(uint8 number, uint period, uint bonus) public onlyOwner {
+  function changeMilestone(uint8 number, uint period, uint bonus, uint minInvestedLimit) public onlyOwner {
     require(number < milestones.length);
     Milestone storage milestone = milestones[number];
 
@@ -48,11 +49,12 @@ contract StagedCrowdsale is Ownable {
 
     milestone.period = period;
     milestone.bonus = bonus;
+    milestone.minInvestedLimit = minInvestedLimit;
 
     totalPeriod = totalPeriod.add(period);
   }
 
-  function insertMilestone(uint8 numberAfter, uint period, uint bonus) public onlyOwner {
+  function insertMilestone(uint8 numberAfter, uint period, uint bonus, uint minInvestedLimit) public onlyOwner {
     require(numberAfter < milestones.length);
 
     totalPeriod = totalPeriod.add(period);
@@ -63,7 +65,7 @@ contract StagedCrowdsale is Ownable {
       milestones[i + 1] = milestones[i];
     }
 
-    milestones[numberAfter + 1] = Milestone(period, bonus);
+    milestones[numberAfter + 1] = Milestone(period, bonus, minInvestedLimit);
   }
 
   function clearMilestones() public onlyOwner {
