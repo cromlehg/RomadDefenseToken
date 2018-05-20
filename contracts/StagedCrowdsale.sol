@@ -83,8 +83,8 @@ contract StagedCrowdsale is Ownable {
 
   function currentMilestone(uint start) public view returns(uint) {
     uint previousDate = start;
-    for(uint i=0; i < milestones.length; i++) {
-      if(now >= previousDate && now < previousDate + milestones[i].period * 1 days) {
+    for (uint i = 0; i < milestones.length; i++) {
+      if (now >= previousDate && now < previousDate + milestones[i].period * 1 days) {
         return i;
       }
       previousDate = previousDate.add(milestones[i].period * 1 days);
