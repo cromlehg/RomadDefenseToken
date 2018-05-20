@@ -10,6 +10,7 @@ export default function (Token, accounts) {
 
   it('should return correct balances after transfer', async function () {
     await token.mint(accounts[0], 100);
+    await token.approveCustomer(accounts[0]);
     await token.transfer(accounts[1], 100);
     const balance0 = await token.balanceOf(accounts[0]);
     assert.equal(balance0, 0);
@@ -19,11 +20,13 @@ export default function (Token, accounts) {
 
   it('should throw an error when trying to transfer more than balance', async function () {
     await token.mint(accounts[0], 100);
+    await token.approveCustomer(accounts[0]);
     await assertRevert(token.transfer(accounts[1], 101));
   });
 
   it('should throw an error when trying to transfer to 0x0', async function () {
     await token.mint(accounts[0], 100);
+    await token.approveCustomer(accounts[0]);
     await assertRevert(token.transfer(0x0, 100));
   });
 }
