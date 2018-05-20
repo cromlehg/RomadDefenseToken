@@ -10,7 +10,7 @@ const should = require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-const Configurator = artifacts.require('Configurator.sol');
+const Configurator = artifacts.require('TestConfigurator.sol');
 const Token = artifacts.require('RomadDefenseToken.sol');
 const Presale = artifacts.require('PreICO.sol');
 const Mainsale = artifacts.require('ICO.sol');
@@ -31,19 +31,24 @@ contract('Configurator integration test', function (accounts) {
     // Advance to the next block to correctly read time in the solidity "now" function interpreted by testrpc
     await advanceBlock();
     configurator = await Configurator.new();
+    token = await Token.new();
+    presale = await Presale.new();
+    mainsale = await Mainsale.new();
+    teamTokensWallet = await TeamTokensWallet.new();
+    earlyInvestorsTokensWallet = await EarlyInvestorsTokensWallet.new();
+
+    await token.transferOwnership(configurator.address);
+    await presale.transferOwnership(configurator.address);
+    await mainsale.transferOwnership(configurator.address);
+    await teamTokensWallet.transferOwnership(configurator.address);
+    await earlyInvestorsTokensWallet.transferOwnership(configurator.address);
+
+    await configurator.setToken(token.address);
+    await configurator.setPreICO(presale.address);
+    await configurator.setICO(mainsale.address);
+    await configurator.setTeamTokensWallet(teamTokensWallet.address);
+    await configurator.setEarlyInvestorsTokensWallet(earlyInvestorsTokensWallet.address);
     await configurator.deploy();
-
-    const tokenAddress = await configurator.token();
-    const presaleAddress = await configurator.preICO();
-    const mainsaleAddress = await configurator.ico();
-    const teamTokensWalletAddress = await configurator.teamTokensWallet();
-    const earlyInvestorsTokensWalletAddress = await configurator.earlyInvestorsTokensWallet();
-
-    token = await Token.at(tokenAddress);
-    presale = await Presale.at(presaleAddress);
-    mainsale = await Mainsale.at(mainsaleAddress);
-    teamTokensWallet = await TeamTokensWallet.at(teamTokensWalletAddress);
-    earlyInvestorsTokensWallet = await EarlyInvestorsTokensWallet.at(earlyInvestorsTokensWalletAddress);
   });
 
 
