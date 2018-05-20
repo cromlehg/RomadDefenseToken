@@ -51,7 +51,7 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
     USDSoftcap = newUSDSoftcap;
   }
 
-  function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
+  function setUSDPrice(uint newUSDPrice) public onlyOwner {
     USDPrice = newUSDPrice;
   }
 
@@ -63,7 +63,7 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
     price = ETHtoUSD.mul(1 ether).div(USDPrice);
   }
 
-  function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
+  function setETHtoUSD(uint newETHtoUSD) public onlyOwner {
     ETHtoUSD = newETHtoUSD;
     updateSoftcap();
     updatePrice();

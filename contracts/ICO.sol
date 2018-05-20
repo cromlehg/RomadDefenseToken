@@ -69,7 +69,7 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
   }
 
-  function setUSDPrice(uint newUSDPrice) public onlyDirectMintAgentOrOwner {
+  function setUSDPrice(uint newUSDPrice) public onlyOwner {
     USDPrice = newUSDPrice;
   }
 
@@ -77,7 +77,7 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     price = ETHtoUSD.mul(1 ether).div(USDPrice);
   }
 
-  function setETHtoUSD(uint newETHtoUSD) public onlyDirectMintAgentOrOwner {
+  function setETHtoUSD(uint newETHtoUSD) public onlyOwner {
     ETHtoUSD = newETHtoUSD;
     updateHardcap();
     updatePrice();
