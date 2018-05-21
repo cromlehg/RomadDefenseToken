@@ -1,28 +1,36 @@
 pragma solidity ^0.4.18;
 
-import './MintableToken.sol';
+import "./MintableToken.sol";
 
 contract RomadDefenseToken is MintableToken {
 
   string public constant name = "ROMAD Defense token";
-
   string public constant symbol = "RDT";
-
   uint32 public constant decimals = 0;
+  mapping(address => bool) public KYCPending;
 
-  mapping(address => bool) public approvedCustomers;
-
-  function approveCustomer(address customer) public onlyOwner {
-    approvedCustomers[customer] = true;
+  function addToKYCPending(address customer) public onlyOwnerOrSaleAgent {
+    require(!mintingFinished);
+    KYCPending[customer] = true;
   }
 
-  function transfer(address _to, uint256 _value) public returns (bool) {
-    require(approvedCustomers[msg.sender]);
-    return super.transfer(_to, _value);
+  function removeFromKYCPending(address customer) public onlyOwnerOrSaleAgent {
+    delete KYCPending[customer];
+  }
+
+  function burnKYCPendingTokens(address customer) public onlyOwnerOrSaleAgent {
+    require(KYCPending[customer]);
+    totalSupply = totalSupply.sub(balances[customer]);
+    balances[customer] = 0;
+  }
+
+  function transfer(address to, uint256 value) public returns (bool) {
+    require(!KYCPending[msg.sender]);
+    return super.transfer(to, value);
   }
 
   function transferFrom(address from, address to, uint256 value) public returns (bool) {
-    require(approvedCustomers[from]);
+    require(!KYCPending[from]);
     return super.transferFrom(from, to, value);
   }
 

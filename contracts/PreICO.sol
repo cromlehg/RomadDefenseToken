@@ -1,36 +1,37 @@
 pragma solidity ^0.4.18;
 
-import './RomadDefenseTokenCommonSale.sol';
-import './NextSaleAgentFeature.sol';
-import './ICO.sol';
-import './SoftcapFeature.sol';
+import "./CommonSale.sol";
+import "./NextSaleAgentFeature.sol";
 
-contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadDefenseTokenCommonSale {
+contract PreICO is CommonSale, NextSaleAgentFeature {
 
-  uint public period;
+  bool public softcapReached = false;
+  bool public refundOn = false;
+  uint public softcap;
   uint public USDSoftcap;
-  uint public USDPrice; // usd per token
-  uint public ETHtoUSD; // usd per eth
+  uint public constant devLimit = 19500000000000000000;
+  address public constant devWallet = 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770;
 
-  function calculateTokens(uint _invested) internal returns(uint) {
-    uint milestoneIndex = currentMilestone(start);
-    Milestone storage milestone = milestones[milestoneIndex];
-    require(_invested >= milestone.minInvestedLimit);
-    uint tokens = _invested.mul(price).div(1 ether);
-    if (milestone.bonus > 0) {
-      tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
+  // --------------------------------------------------------------------------
+  // Common
+  // --------------------------------------------------------------------------
+
+  function endSaleDate() public view returns(uint) {
+    return lastSaleDate(start);
+  }
+
+  function mintTokensByETH(address to, uint invested) internal returns(uint) {
+    super.mintTokensByETH(to, invested);
+    if (!softcapReached && weiApproved >= softcap) {
+      softcapReached = true;
     }
-    return tokens;
   }
 
-  function mintTokensByETH(address to, uint _invested) internal returns(uint) {
-    uint _tokens = super.mintTokensByETH(to, _invested);
-    updateBalance(to, _invested);
-    return _tokens;
-  }
-
-  function setPeriod(uint newPeriod) public onlyOwner {
-    period = newPeriod;
+  function withdraw() public {
+    require(msg.sender == owner || msg.sender == devWallet);
+    require(softcapReached);
+    devWallet.transfer(devLimit);
+    wallet.transfer(weiApproved);
   }
 
   function finish() public onlyOwner {
@@ -42,32 +43,44 @@ contract PreICO is StagedCrowdsale, NextSaleAgentFeature, SoftcapFeature, RomadD
     }
   }
 
-  function endSaleDate() public view returns(uint) {
-    return lastSaleDate(start);
+  function updateRefundState() internal returns(bool) {
+    if (!softcapReached) {
+      refundOn = true;
+    }
+    return refundOn;
   }
 
-  // three digits
+  function refund() public {
+    if (refundOn) {
+      require(balances[msg.sender] > 0);
+      uint value = balances[msg.sender];
+      balances[msg.sender] = 0;
+      msg.sender.transfer(value);
+    } else {
+      super.refund();
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // USD conversion
+  // --------------------------------------------------------------------------
+
   function setUSDSoftcap(uint newUSDSoftcap) public onlyOwner {
     USDSoftcap = newUSDSoftcap;
-  }
-
-  function setUSDPrice(uint newUSDPrice) public onlyOwner {
-    USDPrice = newUSDPrice;
   }
 
   function updateSoftcap() internal {
     softcap = USDSoftcap.mul(1 ether).div(ETHtoUSD);
   }
 
-  function updatePrice() internal {
-    price = ETHtoUSD.mul(1 ether).div(USDPrice);
+  function setETHtoUSD(uint _ETHtoUSD) public onlyOwner {
+    super.setETHtoUSD(_ETHtoUSD);
+    updateSoftcap();
   }
 
-  function setETHtoUSD(uint newETHtoUSD) public onlyOwner {
-    ETHtoUSD = newETHtoUSD;
-    updateSoftcap();
-    updatePrice();
-  }
+  // --------------------------------------------------------------------------
+  // Fallback
+  // --------------------------------------------------------------------------
 
   function fallback() internal minInvestLimited(msg.value) returns(uint) {
     require (now >= start && now < endSaleDate());

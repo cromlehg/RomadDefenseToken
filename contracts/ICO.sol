@@ -1,26 +1,22 @@
 pragma solidity ^0.4.18;
 
-import './RomadDefenseTokenCommonSale.sol';
-import './StagedCrowdsale.sol';
+import './CommonSale.sol';
 
-contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
+contract ICO is CommonSale {
 
   address public teamTokensWallet;
   address public advisorsTokensWallet;
   address public bountyTokensWallet;
   address public earlyInvestorsTokensWallet;
-  uint public hardcap;
   uint public teamTokensPercent;
   uint public advisorsTokensPercent;
   uint public bountyTokensPercent;
   uint public earlyInvestorsTokensPercent;
+  uint public hardcap;
   uint public USDHardcap;
-  uint public USDPrice; // usd per token
-  uint public ETHtoUSD; // usd per eth
-
 
   modifier isUnderHardcap() {
-    require(invested < hardcap);
+    require(weiApproved < hardcap);
     _;
   }
 
@@ -60,38 +56,12 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     earlyInvestorsTokensWallet = newEarlyInvestorsTokensWallet;
   }
 
-  // three digits
-  function setUSDHardcap(uint newUSDHardcap) public onlyOwner {
-    USDHardcap = newUSDHardcap;
+  function endSaleDate() public view returns(uint) {
+    return lastSaleDate(start);
   }
 
-  function updateHardcap() internal {
-    hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
-  }
-
-  function setUSDPrice(uint newUSDPrice) public onlyOwner {
-    USDPrice = newUSDPrice;
-  }
-
-  function updatePrice() internal {
-    price = ETHtoUSD.mul(1 ether).div(USDPrice);
-  }
-
-  function setETHtoUSD(uint newETHtoUSD) public onlyOwner {
-    ETHtoUSD = newETHtoUSD;
-    updateHardcap();
-    updatePrice();
-  }
-
-  function calculateTokens(uint _invested) internal returns(uint) {
-    uint milestoneIndex = currentMilestone(start);
-    Milestone storage milestone = milestones[milestoneIndex];
-    require(_invested >= milestone.minInvestedLimit);
-    uint tokens = _invested.mul(price).div(1 ether);
-    if (milestone.bonus > 0) {
-      tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
-    }
-    return tokens;
+  function mintTokensByETH(address _to, uint _invested) internal isUnderHardcap returns(uint) {
+    super.mintTokensByETH(_to, _invested);
   }
 
   function finish() public onlyOwner {
@@ -109,12 +79,21 @@ contract ICO is StagedCrowdsale, RomadDefenseTokenCommonSale {
     token.finishMinting();
   }
 
-  function endSaleDate() public view returns(uint) {
-    return lastSaleDate(start);
+  // --------------------------------------------------------------------------
+  // USD conversion
+  // --------------------------------------------------------------------------
+
+  function setUSDHardcap(uint _USDHardcap) public onlyOwner {
+    USDHardcap = _USDHardcap;
   }
 
-  function mintTokensByETH(address to, uint _invested) internal isUnderHardcap returns(uint) {
-    super.mintTokensByETH(to, _invested);
+  function updateHardcap() internal {
+    hardcap = USDHardcap.mul(1 ether).div(ETHtoUSD);
+  }
+
+  function setETHtoUSD(uint _ETHtoUSD) public onlyOwner {
+    super.setETHtoUSD(_ETHtoUSD);
+    updateHardcap();
   }
 
 }
