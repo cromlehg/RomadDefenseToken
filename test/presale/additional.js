@@ -23,16 +23,20 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 7;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(6667);
-    this.softcap = ether(1000);
+    this.humanReadablePrice = 0.2; // 0.2 USD per token
+    this.price = this.humanReadablePrice * 1000;
+    this.humanReadableSoftcap = 5000000; // 5 000 000 USD
+    this.softcap = this.humanReadableSoftcap * 1000;
     this.minInvestedLimit = ether(0.1);
+    this.humanReadableETHtoUSD = 700; // 700 USD per ETH
+    this.ETHtoUSD = this.humanReadableETHtoUSD * 1000;
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
-    await crowdsale.setPrice(this.price);
-    await crowdsale.setSoftcap(this.softcap);
+    await crowdsale.setUSDPrice(this.price);
+    await crowdsale.setUSDSoftcap(this.softcap);
+    await crowdsale.setETHtoUSD(this.ETHtoUSD);
     await crowdsale.setStart(this.start);
-    await crowdsale.setPeriod(this.duration);
     await crowdsale.addMilestone(this.duration, 0, 0);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
     await crowdsale.setWallet(wallets[2]);
@@ -51,6 +55,7 @@ export default function (Token, Crowdsale, wallets) {
   it('should mintTokensByETHExternal', async function () {
     await crowdsale.mintTokensByETHExternal(wallets[5], ether(1), {from: wallets[1]}).should.be.fulfilled;
     const balance = await token.balanceOf(wallets[5]);
-    balance.should.bignumber.equal(this.price.times(1));
+    const price = this.ETHtoUSD * ether(1) / this.price;
+    balance.should.bignumber.equal(price);
   });
 }
