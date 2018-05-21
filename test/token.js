@@ -1,5 +1,6 @@
 import additional from './token/additional';
 import basic from './token/basic';
+import kyc from './token/kyc';
 import mintable from './token/mintable';
 import ownable from './token/ownable';
 import standard from './token/standard';
@@ -21,5 +22,8 @@ contract('Basic Token', function (accounts) {
   });
   describe('Additional conditions', function () {
     additional(token, accounts);
+  });
+  describe('KYC', function () {
+    kyc(token, accounts);
   });
 });
