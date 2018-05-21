@@ -39,7 +39,9 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
     start = newStart;
   }
 
-  function endSaleDate() public view returns(uint);
+  function endSaleDate() public view returns(uint) {
+    return lastSaleDate(start);
+  }
 
   function setMinInvestedLimit(uint newMinInvestedLimit) public onlyOwner {
     minInvestedLimit = newMinInvestedLimit;
@@ -79,10 +81,12 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
 
   function mintTokensByETH(address to, uint invested) internal returns(uint) {
     weiRaised = weiRaised.add(invested);
-    if (KYCAutoApprove || approvedCustomers[to]) {
+    balances[to] = balances[to].add(invested);
+    if (approvedCustomers[to]) {
       weiApproved = weiApproved.add(invested);
-    }
-    if (!KYCAutoApprove && !approvedCustomers[to]) {
+    } else if (KYCAutoApprove) {
+      approveCustomer(to);
+    } else {
       token.addToKYCPending(to);
     }
     uint tokens = calculateTokens(invested);
@@ -141,7 +145,6 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
 
   function fallback() internal minInvestLimited(msg.value) returns(uint) {
     require(now >= start && now < endSaleDate());
-    wallet.transfer(msg.value);
     return mintTokensByETH(msg.sender, msg.value);
   }
 

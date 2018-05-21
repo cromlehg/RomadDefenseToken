@@ -5,8 +5,8 @@ import "./NextSaleAgentFeature.sol";
 
 contract PreICO is CommonSale, NextSaleAgentFeature {
 
-  bool public softcapReached = false;
-  bool public refundOn = false;
+  bool public softcapReached;
+  bool public refundOn;
   uint public softcap;
   uint public USDSoftcap;
   uint public constant devLimit = 19500000000000000000;
@@ -16,12 +16,8 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
   // Common
   // --------------------------------------------------------------------------
 
-  function endSaleDate() public view returns(uint) {
-    return lastSaleDate(start);
-  }
-
-  function mintTokensByETH(address to, uint invested) internal returns(uint) {
-    super.mintTokensByETH(to, invested);
+  function mintTokensByETH(address _to, uint _invested) internal returns(uint) {
+    super.mintTokensByETH(_to, _invested);
     if (!softcapReached && weiApproved >= softcap) {
       softcapReached = true;
     }
@@ -65,8 +61,8 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
   // USD conversion
   // --------------------------------------------------------------------------
 
-  function setUSDSoftcap(uint newUSDSoftcap) public onlyOwner {
-    USDSoftcap = newUSDSoftcap;
+  function setUSDSoftcap(uint _USDSoftcap) public onlyOwner {
+    USDSoftcap = _USDSoftcap;
   }
 
   function updateSoftcap() internal {
@@ -76,15 +72,6 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
   function setETHtoUSD(uint _ETHtoUSD) public onlyOwner {
     super.setETHtoUSD(_ETHtoUSD);
     updateSoftcap();
-  }
-
-  // --------------------------------------------------------------------------
-  // Fallback
-  // --------------------------------------------------------------------------
-
-  function fallback() internal minInvestLimited(msg.value) returns(uint) {
-    require (now >= start && now < endSaleDate());
-    return mintTokensByETH(msg.sender, msg.value);
   }
 
 }

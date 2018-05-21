@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-import './CommonSale.sol';
+import "./CommonSale.sol";
 
 contract ICO is CommonSale {
 
@@ -56,11 +56,10 @@ contract ICO is CommonSale {
     earlyInvestorsTokensWallet = newEarlyInvestorsTokensWallet;
   }
 
-  function endSaleDate() public view returns(uint) {
-    return lastSaleDate(start);
-  }
-
   function mintTokensByETH(address _to, uint _invested) internal isUnderHardcap returns(uint) {
+    if (approvedCustomers[_to]) {
+      wallet.transfer(_invested);
+    }
     super.mintTokensByETH(_to, _invested);
   }
 
@@ -77,6 +76,15 @@ contract ICO is CommonSale {
     mintTokens(earlyInvestorsTokensWallet, earlyInvestorsTokens);
     mintTokens(advisorsTokensWallet, advisorsTokens);
     token.finishMinting();
+  }
+
+  // --------------------------------------------------------------------------
+  // KYC
+  // --------------------------------------------------------------------------
+
+  function approveCustomer(address _customer) public {
+    wallet.transfer(balances[_customer]);
+    super.approveCustomer(_customer);
   }
 
   // --------------------------------------------------------------------------
