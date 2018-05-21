@@ -16,7 +16,7 @@
     "mixedcase": 0,
     "quotes": [
       "error",
-      "single"
+      "double"
     ],
     "uppercase": 0,
     "function-order": 0
