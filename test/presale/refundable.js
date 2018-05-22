@@ -42,13 +42,18 @@ export default function (Token, Crowdsale, wallets) {
     await token.transferOwnership(wallets[1]);
   });
 
-  it('should deny refunds before end', async function () {
+  it('should deny refunds before end for approved accounts', async function () {
     await crowdsale.sendTransaction({value: ether(1), from: wallets[3]});
     await crowdsale.approveCustomer(wallets[3], {from: wallets[1]});
     await crowdsale.refund({from: wallets[3]}).should.be.rejectedWith(EVMRevert);
   });
 
-  it('should deny refunds after end if goal was reached', async function () {
+  it('should allow refunds before end for unapproved accounts', async function () {
+    await crowdsale.sendTransaction({value: ether(1), from: wallets[3]});
+    await crowdsale.refund({from: wallets[3]}).should.be.fulfilled;
+  });
+
+  it('should deny refunds after end if goal was reached for approved accounts', async function () {
     await crowdsale.sendTransaction({value: this.softcap, from: wallets[3]});
     await crowdsale.approveCustomer(wallets[3], {from: wallets[1]});
     await increaseTimeTo(this.afterEnd);
