@@ -118,6 +118,7 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
     require(!approvedCustomers[msg.sender] && balances[msg.sender] > 0);
     uint value = balances[msg.sender];
     balances[msg.sender] = 0;
+    weiRaised = weiRaised.sub(value);
     token.burnKYCPendingTokens(msg.sender);
     token.removeFromKYCPending(msg.sender);
     msg.sender.transfer(value);
