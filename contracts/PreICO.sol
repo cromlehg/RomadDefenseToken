@@ -27,7 +27,7 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
     require(msg.sender == owner || msg.sender == devWallet);
     require(softcapReached);
     devWallet.transfer(devLimit);
-    wallet.transfer(weiApproved);
+    wallet.transfer(weiApproved.sub(devLimit));
   }
 
   function finish() public onlyOwner {
