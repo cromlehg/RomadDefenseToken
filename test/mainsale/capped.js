@@ -51,6 +51,7 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setTeamTokensPercent(10);
     await crowdsale.setBountyTokensWallet(wallets[4]);
     await crowdsale.setBountyTokensPercent(5);
+    await crowdsale.switchKYCAutoApprove();
     await crowdsale.transferOwnership(wallets[1]);
     await token.setSaleAgent(crowdsale.address);
     await token.transferOwnership(wallets[1]);

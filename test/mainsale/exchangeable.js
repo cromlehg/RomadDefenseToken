@@ -42,6 +42,7 @@ export default function (Token, Crowdsale, wallets) {
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
     await crowdsale.setWallet(wallets[2]);
     await crowdsale.setToken(token.address);
+    await crowdsale.switchKYCAutoApprove();
     await crowdsale.transferOwnership(wallets[1]);
     await token.setSaleAgent(crowdsale.address);
     await token.transferOwnership(wallets[1]);
