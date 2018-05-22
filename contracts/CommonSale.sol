@@ -85,7 +85,8 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
     if (approvedCustomers[to]) {
       weiApproved = weiApproved.add(invested);
     } else if (KYCAutoApprove) {
-      approveCustomer(to);
+      approvedCustomers[to] = true;
+      weiApproved = weiApproved.add(invested);
     } else {
       token.addToKYCPending(to);
     }
