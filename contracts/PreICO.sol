@@ -16,11 +16,13 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
   // Common
   // --------------------------------------------------------------------------
 
+  function setSoftcap(uint _softcap) public onlyOwner {
+    softcap = _softcap;
+  }
+
   function mintTokensByETH(address _to, uint _invested) internal returns(uint) {
     super.mintTokensByETH(_to, _invested);
-    if (!softcapReached && weiApproved >= softcap) {
-      softcapReached = true;
-    }
+    updateSoftcapState();
   }
 
   function withdraw() public {
@@ -36,6 +38,12 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
     } else {
       withdraw();
       token.setSaleAgent(nextSaleAgent);
+    }
+  }
+
+  function updateSoftcapState() internal {
+    if (!softcapReached && weiApproved >= softcap) {
+      softcapReached = true;
     }
   }
 
@@ -55,6 +63,15 @@ contract PreICO is CommonSale, NextSaleAgentFeature {
     } else {
       super.refund();
     }
+  }
+
+  // --------------------------------------------------------------------------
+  // KYC
+  // --------------------------------------------------------------------------
+
+  function approveCustomer(address _customer) public {
+    super.approveCustomer(_customer);
+    updateSoftcapState();
   }
 
   // --------------------------------------------------------------------------
