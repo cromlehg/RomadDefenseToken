@@ -63,7 +63,7 @@ contract CommonSale is StagedCrowdsale, WalletProvider, PercentRateProvider, Ret
     uint milestoneIndex = currentMilestone(start);
     Milestone storage milestone = milestones[milestoneIndex];
     require(_invested >= milestone.minInvestedLimit);
-    uint tokens = _invested.mul(price).div(1 ether);
+    uint tokens = _invested.mul(price).div(1 ether).div(1 ether);
     if (milestone.bonus > 0) {
       tokens = tokens.add(tokens.mul(milestone.bonus).div(percentRate));
     }
