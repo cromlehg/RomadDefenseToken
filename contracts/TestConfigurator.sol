@@ -94,7 +94,7 @@ contract TestConfigurator is Ownable {
     preICO.addMilestone(3, 11, 0);
     preICO.setUSDPrice(200); // 0.2 USD
     preICO.setUSDSoftcap(500000); //  500 USD
-    preICO.setETHtoUSD(67508); // 675.08 USD per ETH
+    preICO.setETHtoUSD(675080); // 675.08 USD per ETH
     preICO.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
     preICO.setToken(token);
     preICO.setNextSaleAgent(ico);
@@ -114,7 +114,7 @@ contract TestConfigurator is Ownable {
     ico.addMilestone(3, 0, 0);
     ico.setUSDPrice(200); // 0.2 USD
     ico.setUSDHardcap(28000000000); // 28 000 000 USD
-    ico.setETHtoUSD(67508); // 675.08 USD per ETH
+    ico.setETHtoUSD(675080); // 675.08 USD per ETH
     ico.setBountyTokensWallet(0x8Ba7Aa817e5E0cB27D9c146A452Ea8273f8EFF29);
     ico.setBountyTokensPercent(5);
     ico.setTeamTokensPercent(10);
@@ -140,7 +140,7 @@ contract TestConfigurator is Ownable {
     earlyInvestorsTokensWallet.setSecondDate(1527206400); // 25 May 2018 00:00:00 GMT
     earlyInvestorsTokensWallet.activate();
 
-    address manager = 0xca35b7d915458ef540ade6068dfe2f44e8fa733c; //0x8fD94be56237EA9D854B23B78615775121Dd1E82;
+    address manager = 0x8fD94be56237EA9D854B23B78615775121Dd1E82;
 
     token.transferOwnership(manager);
     preICO.transferOwnership(manager);
