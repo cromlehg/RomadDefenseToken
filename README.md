@@ -104,7 +104,7 @@ _Milestones_
 10. 3 days                      : bonus +1% 
 11. 3 days                      : without bonus
 
-## Ropsten network configuration 
+## Ropsten network configuration #1
 
 ### links
 1. _Token_ - https://ropsten.etherscan.io/address/0x862d5e57a1d803c1bccd8c5ca5b95212f5771f66
@@ -203,3 +203,109 @@ https://ropsten.etherscan.io/tx/0x15079de0013cf36855f7d1e0180c48adf000eb41145014
 
 ##### Token holders
 https://ropsten.etherscan.io/token/0x862d5e57a1d803c1bccd8c5ca5b95212f5771f66
+
+
+## Ropsten network configuration #2
+
+### links
+1. _Token_ - https://ropsten.etherscan.io/address/0xf4ccc1a01689d336af59ba96a9ba83c5bf6cdc3e
+2. _Presale_ - https://ropsten.etherscan.io/address/0x3149e96f4146c55a4bb1fce8d1d5d5ffb97ed432
+3. _Mainsale_ - https://ropsten.etherscan.io/address/0x2e44ada0dbf3b7ed7dc3b860c61abe10907b5bef
+4. _teamTokensWallet_ - https://ropsten.etherscan.io/address/0x463124766f0bfa4a6afaa2994df3518b31fafd3e
+5. _earlyInvestorsTokensWallet_ - https://ropsten.etherscan.io/address/0x4628e2f0ebf0e4ff613a39fa306a3908838a6f70
+
+### Crowdsale stages
+
+#### Presale
+
+* _USD Price_                   : 0.2 USD
+* _Minimal investment limit_    : 0.1 ETH
+* _USD Softcap_                 : 500 USD
+* _ETH to USD_                  : 675.08 USD per ETH
+* _Wallet_                      : 0x8fd94be56237ea9d854b23b78615775121dd1e82
+* _Developer wallet_            : 0xEA15Adb66DC92a4BbCcC8Bf32fd25E2e86a2A770
+* _Developer limit_             : 0.0195 ETH
+
+_Milestones_
+
+1. 1 day, 20% bonus, 1 ETH min
+2. 2 days, 18% bonus, 0.5 ETH min
+3. 4 days 16%, 0.1 ETH min
+4. 3 days 15%, 0.1 ETH min
+5. 3 days 14%, 0.1 ETH min
+6. 3 days 13%, 0.1 ETH min
+7. 3 days 12%, 0.1 ETH min
+8. 3 days 11%, 0.1 ETH min
+
+##### Purchasers
+
+* 1 ETH => 4050.48 tokens, gas = 153690
+https://ropsten.etherscan.io/tx/0x33a8c609b8a0dba34af905ca9cd9e2b196282322f2e5953fadcbeecafe5572a7
+
+* 0.5 ETH => rejected txn, less then mininal investment limit, gas = 73782
+https://ropsten.etherscan.io/tx/0xcdccd4e7d19169851f71a69df5f65445a814044bb8de14a79a6d5acf87c96c44
+
+* 0.5 ETH => 1991.486 tokens, gas = 125122
+https://ropsten.etherscan.io/tx/0x2d3b5efff006b7a6a02ce211d653f94d3d0b8dbe7b1df36123b0b8904cf94664
+
+* refund from approved customer after softcap reached => reject, gas = 22480
+https://ropsten.etherscan.io/tx/0x70346a33522bc0e0e60913497213fc27adb2c76e03a1136ebc59166c7e9e2252
+
+* refund from unapproved customer, gas = 31929
+https://ropsten.etherscan.io/tx/0x141196602ea2a5d4ed4d78171daf20b0cb112cfb9544a80298eb51f2ff7b3fe5
+
+##### Service operations
+
+* setStart, gas = 28262
+https://ropsten.etherscan.io/tx/0xfc1a47297f94caeb787233d4e6287f54fdf30bcd0792e158abbc01af90d35aaa
+
+* approveCustomer, gas = 64883
+https://ropsten.etherscan.io/tx/0xe533da4e4dd425c009fef403cc36680e0c7ea4a928736785c991dacddd662398
+
+* finish, gas = 47576
+https://ropsten.etherscan.io/tx/0x8bc7a051f444ae770423423da85a35923e4ebfb60098222c7f32835a356240e4
+
+#### Mainsale
+
+* _USD Price_                   : 0.2 USD
+* _Minimal investment limit_    : 0.1 ETH
+* _USD Hardcap_                 : 28 000 000 USD
+* _Wallet_                      : 0x8fd94be56237ea9d854b23b78615775121dd1e82
+* _BountyTokensPercent_         : 5% 
+* _TeamTokensPercent_           : 10% 
+* _AdvisorsTokensPercent_       : 5% 
+* _EarlyInvestorsTokensPercent_ : 15%
+* _BountyTokensWallet_          : 0x8Ba7Aa817e5E0cB27D9c146A452Ea8273f8EFF29
+* _AdvisorsTokensWallet_        : 0x24a7774d0eba02846580A214eeca955214cA776C
+
+_freeze wallets_
+
+* 30% tokens unlocked after 24 May 2018 00:00:00 GMT
+* 70% tokens unlocked after 25 May 2018 00:00:00 GMT
+
+_Milestones_
+
+1. 6 days                       : bonus +10% 
+2. 6 days                       : bonus +9% 
+3. 6 days                       : bonus +8%
+4. 6 days                       : bonus +7% 
+5. 6 days                       : bonus +6% 
+6. 6 days                       : bonus +5% 
+7. 6 days                       : bonus +4% 
+8. 6 days                       : bonus +3% 
+9. 6 days                       : bonus +2% 
+10. 3 days                      : bonus +1% 
+11. 3 days                      : without bonus
+
+##### Purchasers
+  
+* 0.1 ETH =>  371,294 tokens, gas = 231048
+https://ropsten.etherscan.io/tx/0xe3a545d4505fa7e8acb068f7055cf99a91fdb915325b4be8a5ff0c92fbf213a1
+
+##### Service operations
+
+* approveCustomer, gas = 67039
+https://ropsten.etherscan.io/tx/0xd3013d3eff742844a72d00aa237321c25d4d98fdf2a9ca9c8c81bd0f6acff2a2
+
+* finish, gas = 230257
+https://ropsten.etherscan.io/tx/0x9e3032d0d7070114b0c82bee4cf9098dcf59ef356a2997414214be3fbbbc4527
