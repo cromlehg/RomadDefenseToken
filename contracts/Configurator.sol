@@ -50,7 +50,7 @@ contract DoubleStageFreezeTokensWallet {
   function transferOwnership(address newOwner) public;
 }
 
-contract TestConfigurator is Ownable {
+contract Configurator is Ownable {
 
   RomadDefenseToken public token;
   PreICO public preICO;
