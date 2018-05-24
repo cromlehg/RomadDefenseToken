@@ -36,14 +36,19 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 60;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(5000);
-    this.hardcap = ether(47500);
+    this.humanReadablePrice = 0.2; // 5 tokens per USD
+    this.price = this.humanReadablePrice * 1000;
+    this.humanReadableHardcap = 28000000; // 28 000 000 USD
+    this.hardcap = this.humanReadableHardcap * 1000;
+    this.humanReadableETHtoUSD = 700; // 700 USD per ETH
+    this.ETHtoUSD = this.humanReadableETHtoUSD * 1000;
     this.minInvestedLimit = ether(0.1);
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
-    await crowdsale.setPrice(this.price);
-    await crowdsale.setHardcap(this.hardcap);
+    await crowdsale.setUSDPrice(this.price);
+    await crowdsale.setUSDHardcap(this.hardcap);
+    await crowdsale.setETHtoUSD(this.ETHtoUSD);
     await crowdsale.setStart(this.start);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
     await crowdsale.setWallet(wallets[2]);
@@ -69,14 +74,18 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   milestones.forEach((milestone, i) => {
-    if (i < 10){
+    if (i < 10) {
       it(`should add ${milestone.bonus}% bonus for milestone #${i}`, async function () {
         if (milestone.day !== 0) {
           await increaseTimeTo(this.start + duration.days(milestone.day));
         }
         await crowdsale.sendTransaction({value: ether(1), from: wallets[i]});
         const balance = await token.balanceOf(wallets[i]);
-        const value = this.price.times(1 + milestone.bonus / 100);
+        const value =
+          (new web3.BigNumber(1))
+            .div(this.humanReadablePrice)
+            .mul(this.humanReadableETHtoUSD)
+            .mul(1 + milestone.bonus / 100);
         balance.should.be.bignumber.equal(value);
       });
     }
@@ -86,7 +95,7 @@ export default function (Token, Crowdsale, wallets) {
     await increaseTimeTo(this.start + duration.days(57));
     await crowdsale.sendTransaction({value: ether(1), from: wallets[1]});
     const balance = await token.balanceOf(wallets[1]);
-    const value = this.price.times(1);
+    const value = (new web3.BigNumber(1)).div(this.humanReadablePrice).mul(this.humanReadableETHtoUSD);
     balance.should.be.bignumber.equal(value);
   });
 }

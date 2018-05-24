@@ -1,5 +1,4 @@
 import ether from '../helpers/ether';
-import tokens from '../helpers/tokens';
 import {advanceBlock} from '../helpers/advanceToBlock';
 import {duration} from '../helpers/increaseTime';
 import latestTime from '../helpers/latestTime';
@@ -23,13 +22,13 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 60;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(5000);
+    this.price = 5000;
     this.hardcap = ether(47500);
     this.minInvestedLimit = ether(0.1);
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
-    await crowdsale.setPrice(this.price);
+    await crowdsale.setPrice(ether(this.price));
     await crowdsale.setHardcap(this.hardcap);
     await crowdsale.setStart(this.start);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
@@ -56,7 +55,7 @@ export default function (Token, Crowdsale, wallets) {
   });
 
   it('should mintTokensExternal', async function () {
-    await crowdsale.mintTokensExternal(wallets[4], tokens(100), {from: wallets[1]}).should.be.fulfilled;
+    await crowdsale.mintTokensExternal(wallets[4], 100, {from: wallets[1]}).should.be.fulfilled;
     const balance = await token.balanceOf(wallets[4]);
     balance.should.bignumber.equal(100);
   });
@@ -64,6 +63,6 @@ export default function (Token, Crowdsale, wallets) {
   it('should mintTokensByETHExternal', async function () {
     await crowdsale.mintTokensByETHExternal(wallets[5], ether(1), {from: wallets[1]}).should.be.fulfilled;
     const balance = await token.balanceOf(wallets[5]);
-    balance.should.bignumber.equal(this.price.times(1.1));
+    balance.should.bignumber.equal(5500);
   });
 }

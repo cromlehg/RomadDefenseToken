@@ -71,7 +71,7 @@ export default function (Token, Crowdsale, wallets) {
     const price = this.humanReadablePrice;
     await crowdsale.sendTransaction({value: ether(investment), from: wallets[3]});
     const balance = await token.balanceOf(wallets[3]);
-    balance.should.be.bignumber.equal(ether(investment * conversionRate / price));
+    balance.should.be.bignumber.equal(investment * conversionRate / price);
   });
 
   it('should reject payments outside hardcap', async function () {

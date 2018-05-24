@@ -34,12 +34,12 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 21;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(5000);
+    this.price = 5000;
     this.minInvestedLimit = ether(0.1);
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
-    await crowdsale.setPrice(this.price);
+    await crowdsale.setPrice(ether(this.price));
     await crowdsale.setStart(this.start);
     await crowdsale.setMinInvestedLimit(this.minInvestedLimit);
     await crowdsale.setWallet(wallets[2]);
@@ -66,7 +66,7 @@ export default function (Token, Crowdsale, wallets) {
       const investment = 20;
       await crowdsale.sendTransaction({value: ether(investment), from: wallets[i]});
       const balance = await token.balanceOf(wallets[i]);
-      const value = this.price.times(investment + investment * milestone.bonus / 100);
+      const value = this.price * (investment + investment * milestone.bonus / 100);
       balance.should.be.bignumber.equal(value);
     });
   });

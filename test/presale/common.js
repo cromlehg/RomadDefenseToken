@@ -1,5 +1,4 @@
 import ether from '../helpers/ether';
-import tokens from '../helpers/tokens';
 import {advanceBlock} from '../helpers/advanceToBlock';
 import {increaseTimeTo, duration} from '../helpers/increaseTime';
 import latestTime from '../helpers/latestTime';
@@ -81,7 +80,7 @@ export default function (Token, Crowdsale, wallets) {
   it('should assign tokens to sender', async function () {
     await crowdsale.sendTransaction({value: ether(1), from: wallets[3]});
     const balance = await token.balanceOf(wallets[3]);
-    const price = this.ETHtoUSD * ether(1) / this.price;
+    const price = this.ETHtoUSD / this.price;
     balance.should.be.bignumber.equal(price);
   });
 }

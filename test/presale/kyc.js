@@ -1,5 +1,4 @@
 import ether from '../helpers/ether';
-import tokens from '../helpers/tokens';
 import { advanceBlock } from '../helpers/advanceToBlock';
 import { increaseTimeTo, duration } from '../helpers/increaseTime';
 import latestTime from '../helpers/latestTime';
@@ -24,13 +23,13 @@ export default function (Token, Crowdsale, wallets) {
     this.duration = 7;
     this.end = this.start + duration.days(this.duration);
     this.afterEnd = this.end + duration.seconds(1);
-    this.price = tokens(6667);
+    this.price = 6667;
     this.softcap = ether(1000);
     this.minInvestedLimit = ether(0.1);
 
     token = await Token.new();
     crowdsale = await Crowdsale.new();
-    await crowdsale.setPrice(this.price);
+    await crowdsale.setPrice(ether(this.price));
     await crowdsale.setSoftcap(this.softcap);
     await crowdsale.setStart(this.start);
     await crowdsale.addMilestone(this.duration, 0, 0);

@@ -10,7 +10,7 @@ const should = require('chai')
   .use(require('chai-bignumber')(web3.BigNumber))
   .should();
 
-const Configurator = artifacts.require('TestConfigurator.sol');
+const Configurator = artifacts.require('Configurator.sol');
 const Token = artifacts.require('RomadDefenseToken.sol');
 const Presale = artifacts.require('PreICO.sol');
 const Mainsale = artifacts.require('ICO.sol');
@@ -81,7 +81,7 @@ contract('Configurator integration test', function (accounts) {
     const presaleStart = await presale.start();
     presaleStart.should.bignumber.equal((new Date('27 May 2018 17:00:00 GMT')).getTime() / 1000);
     const mainsaleStart = await mainsale.start();
-    mainsaleStart.should.bignumber.equal((new Date('24 Jun 2018 00:00:00 GMT')).getTime() / 1000);
+    mainsaleStart.should.bignumber.equal((new Date('24 Jun 2018 17:00:00 GMT')).getTime() / 1000);
   });
 
   it('bounty frizze wallet should have firstDate and secondDate time as described in README', async function () {
