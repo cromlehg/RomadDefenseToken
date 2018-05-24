@@ -85,14 +85,14 @@ contract Configurator is Ownable {
     preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
     preICO.setStart(1527440400); // 27 May 2018 17:00:00 GMT
     preICO.addMilestone(1, 20, 10000000000000000000); // 1 day, 20% bonus, 10 ETH min
-    preICO.addMilestone(2, 18, 5000000000000000000); // 2 days, 20% bonus, 5 ETH min
+    preICO.addMilestone(2, 18, 5000000000000000000); // 2 days, 18% bonus, 5 ETH min
     preICO.addMilestone(4, 16, 1000000000000000000); // 4 days, 16% bonus, 1 ETH min
     preICO.addMilestone(3, 15, 0);
     preICO.addMilestone(3, 14, 0);
     preICO.addMilestone(3, 13, 0);
     preICO.addMilestone(3, 12, 0);
     preICO.addMilestone(3, 11, 0);
-    preICO.setUSDPrice(200); // 1 RDT = 5 USD
+    preICO.setUSDPrice(200); // 1 USD = 5 RDT
     preICO.setUSDSoftcap(5000000000); //  500 000 000 USD
     preICO.setETHtoUSD(589330); // 1 ETH = 589.33 USD
     preICO.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
@@ -110,9 +110,9 @@ contract Configurator is Ownable {
     ico.addMilestone(6, 4, 0);
     ico.addMilestone(6, 3, 0);
     ico.addMilestone(6, 2, 0);
-    ico.addMilestone(3, 1, 0);
-    ico.addMilestone(3, 0, 0);
-    ico.setUSDPrice(200); // 1 RDT = 5 USD
+    ico.addMilestone(6, 1, 0);
+    ico.addMilestone(6, 0, 0);
+    ico.setUSDPrice(200); // 1 USD = 5 RDT
     ico.setUSDHardcap(28000000000); // 28 000 000 USD
     ico.setETHtoUSD(589330); // 1 ETH = 589.33 USD
     ico.setBountyTokensWallet(0x28732f6dc12606D529a020b9ac04C9d6f881D3c5);
