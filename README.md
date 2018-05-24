@@ -23,12 +23,13 @@ The tokens for the bounty and the team are minted after the ICO  is finished.
 There is a special function to return 3rd party tokens that were sent by mistake (function retrieveTokens()).  
 Each stage has a direct minting function in wei. This is made to support the external payment gateways.
 
-### Contracts contains
+### Contracts contain
 1. _RomadDefenseToken_ - Token contract
 2. _PreICO_ - PreICO contract
 3. _ICO_ - ICO contract
-4. _Configurator_ - contract with main configuration for production
 4. _TeamWallet_ - wallet for freeze team tokens
+5. _EarlyInvestorsWallet_ - wallet for freeze early investors tokens
+6. _Configurator_ - contract with main configuration for production
 
 ### How to manage contract
 To start working with contract you should follow next steps:
@@ -54,13 +55,17 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ## Main network configuration
 
-* _Minimal insvested limit_     : 0.1 ETH
-* _Bounty tokens percent_       : 5% 
-* _Team tokens percent_         : 10% 
-* _For sale tokens percent_     : 85% 
-* _Team tokens wallet_          : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
-* _Bounty tokens wallet_        : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
-* _Contract owner_              : 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766
+* _Minimal insvested limit_         : 0.1 ETH
+* _Team tokens percent_             : 10%
+* _Advisors tokens percent_         : 5%
+* _Bounty tokens percent_           : 5%
+* _Early investors tokens percent_  : 5%
+* _For sale tokens percent_         : 75%
+* _Team tokens wallet_              : 0x2AB0d2630eb67033E7D35eC1C43303a3F7720dA5
+* _Advisors tokens wallet_          : 0xE7260D4c2a6539910d47F91c9060B4269dF2bD45
+* _Bounty tokens wallet_            : 0x28732f6dc12606D529a020b9ac04C9d6f881D3c5
+* _Early investors tokens wallet_   : 0xf3Eafc283C0fFa5C60206bd65D9753474c1aE48a
+* _Contract owner_                  : 0x675eDE27cafc8Bd07bFCDa6fEF6ac25031c74766
 
 ### Links
 1. _Token_ -
@@ -77,18 +82,31 @@ Tokens can manually mint at any time untill ICO finished.
 * 30% tokens unlocked after 01 Dec 2018 00:00:00 GMT
 * 70% tokens unlocked after 01 Sep 2019 00:00:00 GMT
 
+#### Early investors freeze wallet
+* 50% tokens unlocked after 01 Dec 2018 00:00:00 GMT
+* 50% tokens unlocked after 01 Sep 2019 00:00:00 GMT
+
 #### PreICO
-* _Price_                       : 1 ETH = 6667 Tokens
-* _Softcap_                     : 1000 ETH
-* _Hardcap_                     : 11 250 ETH
-* _Period_                      : 7 days
-* _Start_                       : 12 Feb 2018 00:00:00 GMT
+* _Price_                       : 1 RDT = 0.2 USD
+* _Softcap_                     : 5 000 000 USD
+* _Period_                      : 21 days
+* _Start_                       : 27 May 2018 17:00:00 GMT
 * _Wallet_                      : 0xa86780383E35De330918D8e4195D671140A60A74
 
+_Milestones_
+1. 1 day                        : bonus +20%, 10 ETH min 
+2. 2 days                       : bonus +18%, 5 ETH min 
+3. 4 days                       : bonus +16%, 1 ETH min 
+4. 3 days                       : bonus +15%, 0.1 ETH min 
+5. 3 days                       : bonus +14%, 0.1 ETH min 
+6. 3 days                       : bonus +13%, 0.1 ETH min 
+7. 3 days                       : bonus +12%, 0.1 ETH min 
+8. 3 days                       : bonus +11%, 0.1 ETH min 
+
 #### ICO
-* _Price_                       : 1 ETH = 5000 Tokens
-* _Hardcap_                     : 47 500 ETH
-* _Start_                       : 10 Mar 2018 00:00:00 GMT
+* _Price_                       : 1 RDT = 0.2 USD
+* _Hardcap_                     : 28 000 000 USD
+* _Start_                       : Jun 24 2018 17:00:00 GMT
 * _Wallet_                      : 0x98882D176234AEb736bbBDB173a8D24794A3b085
 
 _Milestones_
@@ -101,8 +119,8 @@ _Milestones_
 7. 6 days                       : bonus +4% 
 8. 6 days                       : bonus +3% 
 9. 6 days                       : bonus +2% 
-10. 3 days                      : bonus +1% 
-11. 3 days                      : without bonus
+10. 6 days                      : bonus +1% 
+11. 6 days                      : without bonus
 
 ## Ropsten network configuration #1
 
