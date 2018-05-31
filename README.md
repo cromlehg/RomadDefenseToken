@@ -92,7 +92,7 @@ Tokens can manually mint at any time untill ICO finished.
 * _Price_                       : 1 RDT = 0.2 USD
 * _Softcap_                     : 5 000 000 USD
 * _Period_                      : 21 days
-* _Start_                       : 27 May 2018 17:00:00 GMT
+* _Start_                       : 27 Jun 2018 17:00:00 GMT
 * _Wallet_                      : 0xa86780383E35De330918D8e4195D671140A60A74
 
 _Milestones_
@@ -108,7 +108,7 @@ _Milestones_
 #### ICO
 * _Price_                       : 1 RDT = 0.2 USD
 * _Hardcap_                     : 28 000 000 USD
-* _Start_                       : Jun 24 2018 17:00:00 GMT
+* _Start_                       : Jul 25 2018 17:00:00 GMT
 * _Wallet_                      : 0x98882D176234AEb736bbBDB173a8D24794A3b085
 
 _Milestones_

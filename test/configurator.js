@@ -79,9 +79,9 @@ contract('Configurator integration test', function (accounts) {
 
   it('presale and mainsale should have start time as described in README', async function () {
     const presaleStart = await presale.start();
-    presaleStart.should.bignumber.equal((new Date('27 May 2018 17:00:00 GMT')).getTime() / 1000);
+    presaleStart.should.bignumber.equal((new Date('27 Jun 2018 17:00:00 GMT')).getTime() / 1000);
     const mainsaleStart = await mainsale.start();
-    mainsaleStart.should.bignumber.equal((new Date('24 Jun 2018 17:00:00 GMT')).getTime() / 1000);
+    mainsaleStart.should.bignumber.equal((new Date('25 Jul 2018 17:00:00 GMT')).getTime() / 1000);
   });
 
   it('bounty frizze wallet should have firstDate and secondDate time as described in README', async function () {

@@ -83,7 +83,7 @@ contract Configurator is Ownable {
     token.setSaleAgent(preICO);
 
     preICO.setWallet(0xa86780383E35De330918D8e4195D671140A60A74);
-    preICO.setStart(1527440400); // 27 May 2018 17:00:00 GMT
+    preICO.setStart(1530118800); // 27 Jun 2018 17:00:00 GMT
     preICO.addMilestone(1, 20, 10000000000000000000); // 1 day, 20% bonus, 10 ETH min
     preICO.addMilestone(2, 18, 5000000000000000000); // 2 days, 18% bonus, 5 ETH min
     preICO.addMilestone(4, 16, 1000000000000000000); // 4 days, 16% bonus, 1 ETH min
@@ -100,7 +100,7 @@ contract Configurator is Ownable {
     preICO.setNextSaleAgent(ico);
 
     ico.setWallet(0x98882D176234AEb736bbBDB173a8D24794A3b085);
-    ico.setStart(1529859600); // Jun 24 2018 17:00:00 GMT
+    ico.setStart(1532538000); // Jul 25 2018 17:00:00 GMT
     ico.addMilestone(6, 10, 0);
     ico.addMilestone(6, 9, 0);
     ico.addMilestone(6, 8, 0);
