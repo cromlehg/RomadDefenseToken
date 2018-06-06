@@ -93,7 +93,7 @@ contract Configurator is Ownable {
     preICO.addMilestone(3, 12, 0);
     preICO.addMilestone(3, 11, 0);
     preICO.setUSDPrice(200); // 1 USD = 5 RDT
-    preICO.setUSDSoftcap(5000000000); //  500 000 USD
+    preICO.setUSDSoftcap(5000000000); //  5 000 000 USD
     preICO.setETHtoUSD(589330); // 1 ETH = 589.33 USD
     preICO.setMinInvestedLimit(100000000000000000); // 0.1 ETH fallback limit
     preICO.setToken(token);
