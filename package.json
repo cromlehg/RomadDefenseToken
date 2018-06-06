@@ -25,13 +25,14 @@
   "scripts": {
     "compile": "./node_modules/.bin/truffle compile",
     "test": "./scripts/test.sh",
-    "flatten": "./node_modules/.bin/truffle-flattener ./contracts/Configurator.sol > ./deploy/contracts.sol",
-    "flatten-configurator": "./node_modules/.bin/truffle-flattener ./contracts/TestConfigurator.sol > ./deploy/TestConfigurator.sol",
+    "flatten-configurator": "./node_modules/.bin/truffle-flattener ./contracts/Configurator.sol > ./deploy/Configurator.sol",
+    "flatten-test-configurator": "./node_modules/.bin/truffle-flattener ./contracts/TestConfigurator.sol > ./deploy/TestConfigurator.sol",
     "flatten-token": "./node_modules/.bin/truffle-flattener ./contracts/RomadDefenseToken.sol > ./deploy/RomadDefenseToken.sol",
     "flatten-presale": "./node_modules/.bin/truffle-flattener ./contracts/PreICO.sol > ./deploy/PreICO.sol",
     "flatten-mainsale": "./node_modules/.bin/truffle-flattener ./contracts/ICO.sol > ./deploy/ICO.sol",
-    "flatten-wallet": "./node_modules/.bin/truffle-flattener ./contracts/DoubleStageFreezeTokensWallet.sol > ./deploy/Wallet.sol",
-    "flatten-test": "npm run flatten-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale && npm run flatten-wallet"
+    "flatten-wallet": "./node_modules/.bin/truffle-flattener ./contracts/DoubleStageFreezeTokensWallet.sol > ./deploy/DoubleStageFreezeTokensWallet.sol",
+    "flatten": "npm run flatten-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale && npm run flatten-wallet",
+    "flatten-test": "npm run flatten-test-configurator && npm run flatten-token && npm run flatten-presale && npm run flatten-mainsale && npm run flatten-wallet"
   },
   "repository": {
     "type": "git",
